@@ -18,11 +18,10 @@ SET time_zone = "+00:00";
 
 --
 -- Database: `bd_mem_app`
+--
 
 CREATE DATABASE IF NOT EXISTS `bd_mem_app` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
 USE `bd_mem_app`;
---
-
 -- --------------------------------------------------------
 
 --
@@ -30,12 +29,13 @@ USE `bd_mem_app`;
 --
 
 CREATE TABLE `tbl_alumno` (
-  `matricula_alumno` varchar(30) NOT NULL,
+  `matricula_alumno` int(11) NOT NULL,
   `nombre_alumno` varchar(30) NOT NULL,
   `apellido1_alumno` varchar(30) NOT NULL,
   `apellido2_alumno` varchar(30) NOT NULL,
   `curso_alumno` varchar(20) NOT NULL,
   `id_tipo_usuario` int(11) NOT NULL
+
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -43,7 +43,7 @@ CREATE TABLE `tbl_alumno` (
 --
 
 INSERT INTO `tbl_alumno` (`matricula_alumno`, `nombre_alumno`, `apellido1_alumno`, `apellido2_alumno`, `curso_alumno`, `id_tipo_usuario`) VALUES
-('1001489.joan23', 'Marc', 'Petit', 'Fernandez', 'Daw2', 1);
+('1001489', 'Marc', 'Petit', 'Fernandez', 'Daw2', 1);
 
 -- --------------------------------------------------------
 
@@ -68,9 +68,21 @@ CREATE TABLE `tbl_integrante_proyecto` (
 CREATE TABLE `tbl_notas_publico` (
   `id_notas_publico` int(11) NOT NULL,
   `id_pregunta_publico` int(11) NOT NULL,
-  `matricula_alumno_publico` varchar(30) NOT NULL,
+  `matricula_alumno_publico` int(11) NOT NULL,
   `valor_nota` int(2) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_notas_tribunal`
+--
+
+CREATE TABLE `tbl_notas_tribunal` (
+  `id_notas_tribunal` int(11) NOT NULL,
+  `id_pregunta_tribunal` int(11) NOT NULL,
+  `id_tribunal` int(11) NOT NULL,
+  `valor_nota` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -82,7 +94,7 @@ CREATE TABLE `tbl_pregunta_publico` (
   `id_pregunta_publico` int(11) NOT NULL,
   `pregunta_publico` varchar(50) NOT NULL,
   `id_integrante` int(11) NOT NULL
-) ENGINE=MRG_MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -127,7 +139,7 @@ INSERT INTO `tbl_profesor` (`usuario_profesor`, `nombre_profesor`, `apellido1_pr
 CREATE TABLE `tbl_proyecto` (
   `id_proyecto` int(11) NOT NULL,
   `titulo_proyecto` varchar(30) NOT NULL,
-  `id_tutor_profesor` int(11) NOT NULL,
+  `id_tutor_profesor` varchar(30) NOT NULL,
   `fecha_proyecto` date NOT NULL,
   `id_pregunta_tribunal` int(11) NOT NULL,
   `id_pregunta_publico` int(11) NOT NULL,
@@ -162,9 +174,7 @@ INSERT INTO `tbl_tipo_usuario` (`id_tipo_usuario`, `tipo_usuario`) VALUES
 
 CREATE TABLE `tbl_tribunal` (
   `id_tribunal` int(11) NOT NULL,
-  `id_profesor1` int(11) NOT NULL,
-  `id_profesor2` int(11) NOT NULL,
-  `id_profesor3` int(11) NOT NULL,
+  `id_profesor` varchar(30) NOT NULL,
   `id_proyecto` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -270,9 +280,6 @@ ALTER TABLE `tbl_tribunal`
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
 ALTER TABLE `tbl_profesor` ADD `password` VARCHAR(10) NOT NULL AFTER `id_tipo_usuario`;
-ALTER TABLE `tbl_tribunal` DROP `id_profesor2`, DROP `id_profesor3`;
-ALTER TABLE `tbl_tribunal` CHANGE `id_profesor1` `id_profesor` INT(11) NOT NULL;
-
 
 ALTER TABLE `tbl_alumno`
   ADD CONSTRAINT `FK_id_tipo_usuario` FOREIGN KEY (`id_tipo_usuario`) REFERENCES `tbl_tipo_usuario` (`id_tipo_usuario`);
@@ -284,7 +291,7 @@ ALTER TABLE `tbl_integrante_proyecto`
   ADD CONSTRAINT `FK_pregunta_tribunal` FOREIGN KEY (`id_pregunta_tribunal`) REFERENCES `tbl_pregunta_tribunal` (`id_pregunta_tribunal`);
 
 ALTER TABLE `tbl_notas_publico`
-  ADD CONSTRAINT `FK_matricula_alumno_publico` FOREIGN KEY (`matricula_alumno`) REFERENCES `tbl_alumno` (`matricula_alumno`),
+  ADD CONSTRAINT `FK_matricula_alumno_publico` FOREIGN KEY (`matricula_alumno_publico`) REFERENCES `tbl_alumno` (`matricula_alumno`),
   ADD CONSTRAINT `FK_id_pregunta_publico` FOREIGN KEY (`id_pregunta_publico`) REFERENCES `tbl_pregunta_publico` (`id_pregunta_publico`);
   
 ALTER TABLE `tbl_pregunta_publico`
@@ -298,11 +305,15 @@ ALTER TABLE `tbl_profesor`
   ADD CONSTRAINT `FK_id_tipo_usuario_profesor` FOREIGN KEY (`id_tipo_usuario`) REFERENCES `tbl_tipo_usuario` (`id_tipo_usuario`);
 
 ALTER TABLE `tbl_proyecto`
-ADD CONSTRAINT `FK_id_tutor_profesor` FOREIGN KEY (`usuario_profesor`) REFERENCES `tbl_profesor` (`usuario_profesor`),
-ADD CONSTRAINT `FK_id_pregunta_tribunal` FOREIGN KEY (`id_pregunta_tribunal`) REFERENCES `tbl_pregunta_tribunal` (`id_pregunta_tribunal`),
-ADD CONSTRAINT `FK_id_pregunta_publico` FOREIGN KEY (`id_pregunta_publico`) REFERENCES `tbl_pregunta_publico` (`id_pregunta_publico`),
+ADD CONSTRAINT `FK_id_tutor_profesor` FOREIGN KEY (`id_tutor_profesor`) REFERENCES `tbl_profesor` (`usuario_profesor`),
+ADD CONSTRAINT `FK_id_pregunta_tribunal_proyecto` FOREIGN KEY (`id_pregunta_tribunal`) REFERENCES `tbl_pregunta_tribunal` (`id_pregunta_tribunal`),
+ADD CONSTRAINT `FK_id_pregunta_publico_proyecto` FOREIGN KEY (`id_pregunta_publico`) REFERENCES `tbl_pregunta_publico` (`id_pregunta_publico`),
 ADD CONSTRAINT `FK_id_tribunal` FOREIGN KEY (`id_tribunal`) REFERENCES `tbl_tribunal` (`id_tribunal`);
 
 ALTER TABLE `tbl_tribunal`
-  ADD CONSTRAINT `FK_id_profe_tribual` FOREIGN KEY (`usuario_profesor`) REFERENCES `tbl_profesor` (`usuario_profesor`),
+  ADD CONSTRAINT `FK_id_profe_tribunal` FOREIGN KEY (`id_profesor`) REFERENCES `tbl_profesor` (`usuario_profesor`),
   ADD CONSTRAINT `FK_proyecto` FOREIGN KEY (`id_proyecto`) REFERENCES `tbl_proyecto` (`id_proyecto`);
+
+ALTER TABLE `tbl_notas_tribunal`
+  ADD CONSTRAINT `FK_id_pregunta_tribunal` FOREIGN KEY (`id_pregunta_tribunal`) REFERENCES `tbl_pregunta_tribunal` (`id_pregunta_tribunal`),
+  ADD CONSTRAINT `FK_id_tribunal_notas` FOREIGN KEY (`id_tribunal`) REFERENCES `tbl_tribunal` (`id_tribunal`);
