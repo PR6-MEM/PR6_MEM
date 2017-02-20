@@ -3,10 +3,75 @@
 <html>
 <head>
 	<title>Loggin profesor</title>
+	<!-- Bootstrap  CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/myStyle.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript">
+    	function showpro(){
+    		document.getElementById("showpro").style.display="block";
+    		document.getElementById("showalu").style.display="none";
+    	}
+    	function showalu(){
+    		document.getElementById("showalu").style.display="block";
+    		document.getElementById("showpro").style.display="none";
+    	}
+    </script>
 </head>
 <body>
-	<div class="logo">
+	<div class="container col-lg-10">
+		<div class="logo col-lg-5">
+			<img src="css/image/logo.png" class= "logo img-rounded" />
+		</div>
 		
-	</div>
+		<div class="formulario col-lg-10">
+
+		<br/>
+				<ul class="nav nav-tabs">
+				  <li class="active" onclick="showpro();"><buton id="go" class="botones btn btn-link">Profesor</buton></li>
+				  <li onclick="showalu();"><buton id="ins" class="botones btn btn btn-link">Alumno</buton></li>
+			  
+				</ul>
+					<div id="showpro">
+						<div class="form-datos form-group input-group col-lg-8">
+							<span class="input-group-addon">
+								<i class="fa fa-user fa-lg"></i>
+							</span>
+							<input class="form-control" placeholder="Usuario" type="text">
+						</div>
+						<div class="form-datos form-group input-group col-lg-8">
+							<span class="input-group-addon">
+								<i class="fa fa-key"></i>
+							</span>
+							<input class="form-control" placeholder="Contraseña" type="text">
+							
+						</div><!-- END FORM DATOS-->
+					<button class="form-boton btn btn-info col-lg-1">
+						<i class="fa fa-arrow-right" aria-hidden="true"></i>
+					</button>
+					
+				</div><!-- END SHOWPRO-->
+			<div id="showalu">
+					<div class="form-datos form-group input-group col-lg-8">
+						<span class="input-group-addon">
+							<i class="fa fa-user fa-lg"></i>
+						</span>
+					
+						<input class="form-control" placeholder="Matricula" type="text">
+					</div>
+						<button class="form-boton btn btn-info col-lg-1">
+						<i class="fa fa-arrow-right" aria-hidden="true"></i>
+					</button>
+			</div><!-- END SHOWALU -->
+			</div><!-- END FORMULARIO -->
+
+	</div><!-- END CONTAINER-->
+	    <script type="text/javascript">
+    	document.onload = showalu();
+    </script>
 </body>
 </html>
