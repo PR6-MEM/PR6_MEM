@@ -44,6 +44,7 @@ CREATE TABLE `tbl_alumno` (
 
 INSERT INTO `tbl_alumno` (`matricula_alumno`, `nombre_alumno`, `apellido1_alumno`, `apellido2_alumno`, `curso_alumno`, `id_tipo_usuario`) VALUES
 ('1001489', 'Marc', 'Petit', 'Fernandez', 'Daw2', 1);
+INSERT INTO `tbl_alumno` (`matricula_alumno`, `nombre_alumno`, `apellido1_alumno`, `apellido2_alumno`, `curso_alumno`, `id_tipo_usuario`) VALUES ('10000585', 'Esther', 'Rovira', 'Sancho', 'Daw2', '1'), ('07138', 'Miguel', 'López ', 'Galán ', 'daw2', '1');
 
 -- --------------------------------------------------------
 
