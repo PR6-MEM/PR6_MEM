@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 21, 2017 at 05:38 PM
+-- Generation Time: Feb 21, 2017 at 05:55 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.6
 
@@ -129,9 +129,23 @@ INSERT INTO `tbl_pregunta_publico` (`id_pregunta_publico`, `pregunta_publico`) V
 
 CREATE TABLE `tbl_pregunta_tribunal` (
   `id_pregunta_tribunal` int(11) NOT NULL,
-  `pregunta_tribunal` varchar(100) NOT NULL,
-  `id_integrante` int(11) NOT NULL
+  `pregunta_tribunal` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_pregunta_tribunal`
+--
+
+INSERT INTO `tbl_pregunta_tribunal` (`id_pregunta_tribunal`, `pregunta_tribunal`) VALUES
+(1, 'Estructura de la presentació.\r\n(presentació personal, introducció, presentació del projecte, conclusions, preguntes,comiat adequat)\r\n'),
+(2, 'Temps utilitzat\r\n(duració total, duració de cada part de l’exposició)\r\n'),
+(3, 'Expressió oral \r\n(to de veu, claredat oral, ritme, vocabulari adequat …)\r\n'),
+(4, 'Presencia adequada\r\n(presencia física, moviment corporal,etc..)\r\n'),
+(5, 'Material utilitzat en l’exposició oral\r\n(PowerPoint, fotocopies, vídeos, etc...)'),
+(6, 'Desenvolupament i procés del projecte'),
+(7, 'Conclusions ben raonades'),
+(8, 'Respostes a les preguntes del tribunal'),
+(9, 'Qualitat del producte obtingut segons l''exposició.');
 
 -- --------------------------------------------------------
 
@@ -278,8 +292,7 @@ ALTER TABLE `tbl_pregunta_publico`
 -- Indexes for table `tbl_pregunta_tribunal`
 --
 ALTER TABLE `tbl_pregunta_tribunal`
-  ADD PRIMARY KEY (`id_pregunta_tribunal`),
-  ADD KEY `FK_id_integrante_proyecto` (`id_integrante`);
+  ADD PRIMARY KEY (`id_pregunta_tribunal`);
 
 --
 -- Indexes for table `tbl_profesor`
@@ -332,7 +345,7 @@ ALTER TABLE `tbl_pregunta_publico`
 -- AUTO_INCREMENT for table `tbl_pregunta_tribunal`
 --
 ALTER TABLE `tbl_pregunta_tribunal`
-  MODIFY `id_pregunta_tribunal` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pregunta_tribunal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `tbl_proyecto`
 --
@@ -380,12 +393,6 @@ ALTER TABLE `tbl_notas_publico`
 ALTER TABLE `tbl_notas_tribunal`
   ADD CONSTRAINT `FK_id_pregunta_tribunal` FOREIGN KEY (`id_pregunta_tribunal`) REFERENCES `tbl_pregunta_tribunal` (`id_pregunta_tribunal`),
   ADD CONSTRAINT `FK_id_tribunal_notas` FOREIGN KEY (`id_tribunal`) REFERENCES `tbl_tribunal` (`id_tribunal`);
-
---
--- Constraints for table `tbl_pregunta_tribunal`
---
-ALTER TABLE `tbl_pregunta_tribunal`
-  ADD CONSTRAINT `FK_id_integrante_proyecto` FOREIGN KEY (`id_integrante`) REFERENCES `tbl_integrante_proyecto` (`id_integrante`);
 
 --
 -- Constraints for table `tbl_profesor`
