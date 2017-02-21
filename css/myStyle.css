@@ -29,6 +29,25 @@
 .logo{
 	width:50%;
 }
+
 .botones{
 	color:white;
+}
+/* AREA DE USUARIO */
+.user_logo{
+	width:100%;
+}
+.user_div{
+	margin-left: 41%;
+	margin-right: 41%;
+	/*float-right;*/
+}
+
+/*AREA DE PROYECTOS*/
+.user_logged {
+    position: relative;
+    float: right;
+    padding: 0 48px 0 60px;
+    padding: 0 3rem 0 3.75rem;
+    font-size:2em;
 }

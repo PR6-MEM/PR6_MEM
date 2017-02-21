@@ -2,7 +2,7 @@
 <meta charset="utf-8">
 <html>
 <head>
-	<title>Loggin profesor</title>
+	<title>Acceso</title>
 	<!-- Bootstrap  CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -38,6 +38,7 @@
 				</ul>
 					<div id="showpro">
 						<div class="form-datos form-group input-group col-lg-8">
+
 							<span class="input-group-addon">
 								<i class="fa fa-user fa-lg"></i>
 							</span>
@@ -56,16 +57,19 @@
 					
 				</div><!-- END SHOWPRO-->
 			<div id="showalu">
+				<form action = "creacion de proyecto/php/login_alu.proc.php" method="POST" >
 					<div class="form-datos form-group input-group col-lg-8">
+
 						<span class="input-group-addon">
 							<i class="fa fa-user fa-lg"></i>
 						</span>
 					
-						<input class="form-control" placeholder="Matricula" type="text">
+						<input class="form-control" placeholder="Matricula" type="text" id="matricula" name="matricula">
 					</div>
 						<button class="form-boton btn btn-info col-lg-1">
 						<i class="fa fa-arrow-right" aria-hidden="true"></i>
 					</button>
+				</form><!-- END FORM-->
 			</div><!-- END SHOWALU -->
 			</div><!-- END FORMULARIO -->
 
