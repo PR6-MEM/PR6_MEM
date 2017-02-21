@@ -31,8 +31,8 @@
 			<div class="user_div_logo col-lg-2">
 				<img src="../../css/image/logo.png" class= "user_logo img-rounded" />
 			</div><!-- END LOGO-->
-			<div class="user_logged col-lg-6">
-				<div class="col-lg-4">
+			<div class="user_logged col-lg-8">
+				<div class="col-lg-5">
 					<p>
 						<?php echo $name; ?>
 					</p>
