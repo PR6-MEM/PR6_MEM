@@ -39,6 +39,10 @@
 		  border:2px solid #005cb9;
 		  border-radius: 50px;
 		}
+		.navbar-custom {
+			background-color: #005cb9 !important;
+		}
+
 
 	</style>
 <body>
@@ -46,19 +50,8 @@
 <div class="wrapper">
 
 	 <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                 <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-<!--                 <a class="navbar-brand" href="index.html">SB Admin //esto va fuera</a>
-             <img src="img/base.jpg">
- -->        
- 		    </div>
-            <!-- Top Menu Items -->
+        <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+          <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
@@ -170,6 +163,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-12">
+				<!-- habrá que hacer una consulta para obtener el titulo del proyecto  -->
 					<h2 class="page-header text-center">Proyecto tal tal tal tal <small> <br>Me encanta! <img src="img/5.jpg"> Sonries? <img src="img/6.jpg"> Te aburres? <img src="img/7.jpg"> o no te ha gustado nada?<img src="img/8.jpg"></small></h2>
 				</div>
 			</div> <!-- Final div class row -->
