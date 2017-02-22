@@ -2,10 +2,8 @@
 <html>
 <head>
 	<title>Valoración del público</title>
-
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-
 	   <!-- Bootstrap Core CSS -->
+       <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
@@ -170,77 +168,27 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-12">
-					<h2 class="page-header text-center">Proyecto tal tal tal tal </h2>
+                
+					<h1 class="page-header text-center">VALORACION TRIBUNAL</h1>
 				</div>
 			</div> <!-- Final div class row -->
 			<!--  -->
 			<div class="row">
 				<div class="col-md-12 text-center">
-					<!-- internamente el amor=10 sonrio=7 aburro=5 muero=2 -->
-						
-						<form class="">
-						<h4>Presentación Oral</h4>
+					<!-- habrá que hacer una consulta para obtener el titulo del proyecto  -->
+						<h2>Falta la consulta para obtener el título del proyecto </h2>
+					
 							
-								<h4>¿Cómo valoras la expresión oral?</h4>
-								<br>
-								<p>Alumno 1 Esto lo leerá de la base de datos</p>	
-								<label>
-					  				<input type="radio" name="p2_alum1" value="encanta" />
-									<img src="img/1.jpg">
-								</label>
-								<label>
-					  				<input type="radio" name="p2_alum1" value="sonrio" />
-									<img src="img/2.jpg">
-								</label>
-								<label>
-					  				<input type="radio" name="p2_alum1" value="aburro" />
-									<img src="img/3.jpg">
-								</label>
-								<label>
-					  				<input type="radio" name="p2_alum1" value="muero" />
-									<img src="img/4.jpg">
-								</label>
-								<br>
-								<p>Alumno 2 Esto lo leerá de la base de datos</p>	
-								<label>
-					  				<input type="radio" name="p2_alum2" value="encanta" />
-									<img src="img/1.jpg">
-								</label>
-								<label>
-					  				<input type="radio" name="p2_alum2" value="sonrio" />
-									<img src="img/2.jpg">
-								</label>
-								<label>
-					  				<input type="radio" name="p2_alum2" value="aburro" />
-									<img src="img/3.jpg">
-								</label>
-								<label>
-					  				<input type="radio" name="p2_alum2" value="muero" />
-									<img src="img/4.jpg">
-								</label>
-								<br>
-								<p>Alumno 3 Esto lo leerá de la base de datos</p>	
-								<label>
-					  				<input type="radio" name="p2_alum3" value="encanta" />
-									<img src="img/1.jpg">
-								</label>
-								<label>
-					  				<input type="radio" name="p2_alum3" value="sonrio" />
-									<img src="img/2.jpg">
-								</label>
-								<label>
-					  				<input type="radio" name="p2_alum3" value="aburro" />
-									<img src="img/3.jpg">
-								</label>
-								<label>
-					  				<input type="radio" name="p2_alum3" value="muero" />
-									<img src="img/4.jpg">
-								</label>
-								<br>
-								<br>
-									<input type="submit" class="btn btn-primary" name="btn_preg1">
-						</form>	
-						<br>
+                        <form>
+                         <!-- habrá que hacer una consulta para obtener las preguntas, con su y id y su texto correspondiente  -->
+                         <?php
+                         include("php/consulta_preguntas_tribunal.php");
+
+                         //ya genera el contenido de las preguntas, luego habrá que cojer la puntuación de cada elemento
+                         ?>
+                        
+                        <input type="submit">
+                        </form> 
 				</div> <!-- Final div class col-md-12 -->
 			</div> <!-- Final div class row -->
 		</div> <!-- Final div class container-fluid -->
@@ -260,4 +208,3 @@
 
 </body>
 </html>
-
