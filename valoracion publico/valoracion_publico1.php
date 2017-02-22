@@ -2,6 +2,9 @@
 <html>
 <head>
 	<title>Valoración del público</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
 	   <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -167,18 +170,19 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-12">
-					<h1 class="page-header text-center">VALORACION<small> <br>Me encanta!<img src="img/1.jpg"> Sonries? <img src="img/2.jpg"> Te aburres? <img src="img/3.jpg"> o no te ha gustado nada?<img src="img/4.jpg"></small></h1>
+					<h2 class="page-header text-center">Proyecto tal tal tal tal <small> <br>Me encanta! <img src="img/5.jpg"> Sonries? <img src="img/6.jpg"> Te aburres? <img src="img/7.jpg"> o no te ha gustado nada?<img src="img/8.jpg"></small></h2>
 				</div>
 			</div> <!-- Final div class row -->
 			<!--  -->
 			<div class="row">
 				<div class="col-md-12 text-center">
 					<!-- internamente el amor=10 sonrio=7 aburro=5 muero=2 -->
-						<h2>Proyecto tal tal tal tal </h2>
-						<h3>Presentación Oral</h3>
+						
+						<form class="">
+						<h4>Presentación Oral</h4>
 							<h4>¿Te ha quedado una idea clara de la parte que ha expuesto?</h4>
 							<br>
-								<p>Alumno 1 Esto lo leerá de la base de datos</p>	
+								<p><img src="">Alumno 1 Esto lo leerá de la base de datos</p>	
 								<label>
 					  				<input type="radio" name="p1_alum1" value="encanta" />
 									<img src="img/1.jpg">
@@ -232,6 +236,7 @@
 									<img src="img/4.jpg">
 								</label>
 								<br>
+									<input type="submit" class="btn btn-primary" name="btn_preg1">
 						</form>	
 				</div> <!-- Final div class col-md-12 -->
 			</div> <!-- Final div class row -->
