@@ -54,7 +54,7 @@
 		}
 		label > input:checked + img{ /* Le doy estilo a la imagen cuando está checkeada */
 		  border:2px solid #005cb9;
-		  border-radius: 50px;
+		  border-radius: 40px;
 		 
 
 		}
@@ -76,7 +76,8 @@
 		}
 
 		function deconecta(){
-			
+			var deconecta  = confirm("¿Estás seguro que te quieres salir?");
+	    		return desconecta;
 		}
 
 	</script>
@@ -87,6 +88,7 @@
 
 	 <!-- Navigation -->
         <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        	<img src="img/base.jpg">
           <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
                 <li class="dropdown">
@@ -183,7 +185,7 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="php/login.proc.php" onclick=" return desconecta(); "><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a href="../index.html" onclick=" return desconecta(); "><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>
@@ -214,7 +216,7 @@
 						<h4>Presentación Oral</h4>
 							<h4>¿Te ha quedado una idea clara de la parte que ha expuesto?</h4>
 							<br>
-								<p> <?php include ("");?> Alumno 1 Esto lo leerá de la base de datos</p>	
+								<p> <?php include ("php/consulta_integrante1_proyecto.php");?></p>	
 								<label>
 					  				<input type="radio" name="p1_alum1" value="encanta" onclick="seleccionAmarilla()" />
 									<img src="img/1.jpg" name="cara">
@@ -232,7 +234,7 @@
 									<img src="img/4.jpg">
 								</label>
 								<br>
-								<p>Alumno 2 Esto lo leerá de la base de datos</p>	
+								<p><?php include ("php/consulta_integrante2_proyecto.php");?></p>	
 								<label>
 					  				<input type="radio" name="p1_alum2" value="encanta" />
 									<img src="img/1.jpg">
@@ -250,7 +252,7 @@
 									<img src="img/4.jpg">
 								</label>
 								<br>
-								<p>Alumno 3 Esto lo leerá de la base de datos</p>	
+								<p><?php include ("php/consulta_integrante3_proyecto.php");?></p>	
 								<label>
 					  				<input type="radio" name="p1_alum3" value="encanta" />
 									<img src="img/1.jpg">

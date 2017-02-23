@@ -1,7 +1,7 @@
 <?php
  extract($_REQUEST);
 
-include ("php/conexion.proc.php");
+include ("conexion.proc.php");
 
 $consulta= "SELECT titulo_proyecto FROM tbl_proyecto WHERE id_proyecto=".$id_proyecto; 
 
