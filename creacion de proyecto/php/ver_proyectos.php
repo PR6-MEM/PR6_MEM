@@ -51,7 +51,7 @@
 			while ($fila = mysqli_fetch_array($result)) 
 				{
 					echo "<div class='proyect  col-lg-6'>";
-						echo $fila['titulo_proyecto'] . "<br/>";
+						echo "<a href='../../valoracion publico/valoracion_publico1.php?id_proyecto=".$fila['id_proyecto']."'>".$fila['titulo_proyecto'] . "</a><br/>";
 					echo "</div>";
 				}
 
