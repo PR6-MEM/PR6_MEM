@@ -38,6 +38,8 @@
 		label > input:checked + img{ /* Le doy estilo a la imagen cuando está checkeada */
 		  border:2px solid #005cb9;
 		  border-radius: 50px;
+		 
+
 		}
 		.navbar-custom {
 			background-color: #005cb9 !important;
@@ -45,6 +47,19 @@
 
 
 	</style>
+
+	<script type="text/javascript">
+
+		function seleccionAmarilla (){
+			var imagen = document.getElementsByName('p1_alum1');
+			if (imagen.checked) {
+				cara.src = "img/1.1.jpg"
+			}
+
+		}
+
+	</script>
+
 <body>
 
 <div class="wrapper">
@@ -172,14 +187,14 @@
 				<div class="col-md-12 text-center">
 					<!-- internamente el amor=10 sonrio=7 aburro=5 muero=2 -->
 						
-						<form class="">
+						<form class="" action="">
 						<h4>Presentación Oral</h4>
 							<h4>¿Te ha quedado una idea clara de la parte que ha expuesto?</h4>
 							<br>
-								<p><img src="">Alumno 1 Esto lo leerá de la base de datos</p>	
+								<p>Alumno 1 Esto lo leerá de la base de datos</p>	
 								<label>
-					  				<input type="radio" name="p1_alum1" value="encanta" />
-									<img src="img/1.jpg">
+					  				<input type="radio" name="p1_alum1" value="encanta" onchange="seleccionAmarilla()" />
+									<img src="img/1.jpg" name="cara">
 								</label>
 								<label>
 					  				<input type="radio" name="p1_alum1" value="sonrio" />
@@ -232,6 +247,7 @@
 								<br>
 									<input type="submit" class="btn btn-primary" name="btn_preg1">
 						</form>	
+						<br>
 				</div> <!-- Final div class col-md-12 -->
 			</div> <!-- Final div class row -->
 		</div> <!-- Final div class container-fluid -->
