@@ -1,3 +1,20 @@
+<?php
+	require_once("php/conexion.proc.php");
+	session_start();
+	if(!isset ($_SESSION['user']))
+	{
+		echo "<script type='text/javascript'>alert('No esta registrado');
+					location.href='../../index.html';</script>";
+					die;
+	}
+	$sql="SELECT * FROM `tbl_alumno` WHERE `matricula_alumno` = ".$_SESSION['user']."";
+	$result	=	mysqli_query($conexion,$sql);
+	while ($fila = mysqli_fetch_array($result)) 
+				{
+					$name = $fila['nombre_alumno']." ".$fila['apellido1_alumno'];
+				}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,10 +69,14 @@
 
 		function seleccionAmarilla (){
 			var imagen = document.getElementsByName('p1_alum1');
-			if (imagen.checked) {
+			if (imagen[0].checked) {
 				cara.src = "img/1.1.jpg"
 			}
 
+		}
+
+		function deconecta(){
+			
 		}
 
 	</script>
@@ -78,7 +99,7 @@
                                         <img class="media-object" src="http://placehold.it/50x50" alt="">
                                     </span>
                                     <div class="media-body">
-                                        <h5 class="media-heading"><strong>John Smith</strong>
+                                        <h5 class="media-heading"><strong><?php echo $name; ?></strong>
                                         </h5>
                                         <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
                                         <p>Lorem ipsum dolor sit amet, consectetur...</p>
@@ -93,7 +114,7 @@
                                         <img class="media-object" src="http://placehold.it/50x50" alt="">
                                     </span>
                                     <div class="media-body">
-                                        <h5 class="media-heading"><strong>John Smith</strong>
+                                        <h5 class="media-heading"><strong>J<?php echo $name; ?></strong>
                                         </h5>
                                         <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
                                         <p>Lorem ipsum dolor sit amet, consectetur...</p>
@@ -108,7 +129,7 @@
                                         <img class="media-object" src="http://placehold.it/50x50" alt="">
                                     </span>
                                     <div class="media-body">
-                                        <h5 class="media-heading"><strong>John Smith</strong>
+                                        <h5 class="media-heading"><strong><?php echo $name; ?></strong>
                                         </h5>
                                         <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
                                         <p>Lorem ipsum dolor sit amet, consectetur...</p>
@@ -149,7 +170,7 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $name; ?><b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -162,7 +183,7 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a href="php/login.proc.php" onclick=" return desconecta(); "><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>
@@ -179,7 +200,9 @@
 			<div class="row">
 				<div class="col-md-12">
 				<!-- habrá que hacer una consulta para obtener el titulo del proyecto  -->
-					<h2 class="page-header text-center">Proyecto tal tal tal tal <small> <br>Me encanta! <img src="img/5.jpg"> Sonries? <img src="img/6.jpg"> Te aburres? <img src="img/7.jpg"> o no te ha gustado nada?<img src="img/8.jpg"></small></h2>
+					<?php include("php/consulta_titulo.proc.php");?>
+					<!-- esta parte se genera dinámicamente por el php -->
+					<!-- <h2 class="page-header text-center">Proyecto tal tal tal tal <small> <br>Me encanta! <img src="img/5.jpg"> Sonries? <img src="img/6.jpg"> Te aburres? <img src="img/7.jpg"> o no te ha gustado nada?<img src="img/8.jpg"></small></h2> -->
 				</div>
 			</div> <!-- Final div class row -->
 			<!--  -->
@@ -191,9 +214,9 @@
 						<h4>Presentación Oral</h4>
 							<h4>¿Te ha quedado una idea clara de la parte que ha expuesto?</h4>
 							<br>
-								<p>Alumno 1 Esto lo leerá de la base de datos</p>	
+								<p> <?php include ("");?> Alumno 1 Esto lo leerá de la base de datos</p>	
 								<label>
-					  				<input type="radio" name="p1_alum1" value="encanta" onchange="seleccionAmarilla()" />
+					  				<input type="radio" name="p1_alum1" value="encanta" onclick="seleccionAmarilla()" />
 									<img src="img/1.jpg" name="cara">
 								</label>
 								<label>
