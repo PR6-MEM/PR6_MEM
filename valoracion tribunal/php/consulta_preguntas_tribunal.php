@@ -1,32 +1,89 @@
 <?php
  extract($_REQUEST);
- //echo $curso_alumno;
-// $curso_alumno = "daw2";
-
-// echo $consulta;
-//echo '<select name="alumno1" class="form-control">';
+ 
 include ("../php/conexion.proc.php");
+//creamos una array en la cual almacenaremos los nombres de los integrantes
+$nombres = array();
+$matriculas = array();
+//primero realizamos una consulta para obtener las matriculas de los integrantes del proyecto seleccionado.
+$consulta= "SELECT matricula_alumno FROM  tbl_integrante_proyecto WHERE id_proyecto =". $id_proyecto; 
 
-$consulta= "SELECT * FROM  tbl_pregunta_tribunal"; 
 
 $resultado= mysqli_query($conexion, $consulta) or die (mysqli_error());
 
-?>
 
-<?php
 
+//ahora para cada matricula haremos otra consulta para sacar los  nombres de cada matricula
 while($fila = mysqli_fetch_array($resultado)){	
-		if($fila['id_pregunta_tribunal']  == 1 ){
-			echo "<h3>Valoració de la presentació oral </h4>";
-		}elseif($fila['id_pregunta_tribunal']  == 5){
-			echo "<h3>Valoració del contingut de la presentació </h3>";
-		}
-			echo"<label>".$fila['pregunta_tribunal']."</label> <input  type='number' name='quantity' min='0' max='10' value='5'> <br><br><br>";
-			echo"<input type='text'value='".$fila['id_pregunta_tribunal']."' style='display:none;'>";
-			//echo"<input type='number' name='quantity' min='1' max='5' value='5'> <br><br>";
 		
-			
+		$consulta = "SELECT nombre_alumno FROM tbl_alumno WHERE matricula_alumno=".$fila['matricula_alumno']; 
+
+		$nombres_alumnos= mysqli_query($conexion, $consulta) or die (mysqli_error());
+
+		while($nombre_alumno = mysqli_fetch_array($nombres_alumnos)){	
+
+			//y ahora meteremos cada nombre en la array creada antes
+			array_push($nombres, $nombre_alumno['nombre_alumno']); 
+			array_push($matriculas, $fila['matricula_alumno']); 
+		}
+
 	}
+
+$cont=0;
+//y ahora para cada nombre de la array hacemos una consulta para generar las preguntas a cada alumno
+	foreach ($nombres as $nom_alu) {
+
+		
+				
+
+				$sql= "SELECT * FROM tbl_pregunta_tribunal WHERE id_pregunta_tribunal < 5"; 
+
+				//echo $sql;
+				$preguntas_tribunal= mysqli_query($conexion, $sql) or die (mysqli_error());
+				
+				
+
+				while($pregunta = mysqli_fetch_array($preguntas_tribunal)){	
+
+					echo"<div class='col-lg-12' style='background-color:#DDDDDD'>";
+					if($pregunta['id_pregunta_tribunal']  == 1 ){				
+					echo "<h3>Valoració de la presentació oral de ".$nom_alu." </h4>";
+					}
+					echo $nom_alu;
+				echo $matriculas[$cont];
+					//echo"<div class='col-lg-12' style='background-color:grey;'>";
+					echo"<label>".$pregunta['pregunta_tribunal']."</label> <input type='number' name='nota_".$matriculas[$cont]."_".$pregunta['id_pregunta_tribunal']."' min='0' max='10' value='5'> <br><br><br>";
+					echo"<input type='text'value='".$pregunta['id_pregunta_tribunal']."' style='display:none;'>";
+
+					
+				echo"<br></div>";
+				}
+				$cont++;
+			
+		
+				
+	}
+		
+			//y ahora generamos las preguntas globales de la presentación
+
+				$sql= "SELECT * FROM tbl_pregunta_tribunal WHERE id_pregunta_tribunal >= 5"; 
+
+				//echo $sql;
+				$preguntas_tribunal= mysqli_query($conexion, $sql) or die (mysqli_error());
+
+
+				while($pregunta = mysqli_fetch_array($preguntas_tribunal)){	
+
+					if($pregunta['id_pregunta_tribunal']  == 5){
+					echo "<h3>Valoració del contingut de la presentació (global) </h3>";
+		
+					}								
+					echo"<label>".$pregunta['pregunta_tribunal']."</label> <input type='number' name='nota_global_".$pregunta['id_pregunta_tribunal']."' min='0' max='10' value='5'> <br><br><br>";
+					echo"<input type='text'value='".$pregunta['id_pregunta_tribunal']."' style='display:none;'>";
+
+				}
+
+
 mysqli_close($conexion);
 //echo '</select>';
 

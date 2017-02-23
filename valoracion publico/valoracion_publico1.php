@@ -38,27 +38,35 @@
 		label > input:checked + img{ /* Le doy estilo a la imagen cuando está checkeada */
 		  border:2px solid #005cb9;
 		  border-radius: 50px;
+		 
+
+		}
+		.navbar-custom {
+			background-color: #005cb9 !important;
 		}
 
+
 	</style>
+
+	<script type="text/javascript">
+
+		function seleccionAmarilla (){
+			var imagen = document.getElementsByName('p1_alum1');
+			if (imagen.checked) {
+				cara.src = "img/1.1.jpg"
+			}
+
+		}
+
+	</script>
+
 <body>
 
 <div class="wrapper">
 
 	 <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                 <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-<!--                 <a class="navbar-brand" href="index.html">SB Admin //esto va fuera</a>
-             <img src="img/base.jpg">
- -->        
- 		    </div>
-            <!-- Top Menu Items -->
+        <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+          <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
@@ -170,6 +178,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-12">
+				<!-- habrá que hacer una consulta para obtener el titulo del proyecto  -->
 					<h2 class="page-header text-center">Proyecto tal tal tal tal <small> <br>Me encanta! <img src="img/5.jpg"> Sonries? <img src="img/6.jpg"> Te aburres? <img src="img/7.jpg"> o no te ha gustado nada?<img src="img/8.jpg"></small></h2>
 				</div>
 			</div> <!-- Final div class row -->
@@ -178,14 +187,14 @@
 				<div class="col-md-12 text-center">
 					<!-- internamente el amor=10 sonrio=7 aburro=5 muero=2 -->
 						
-						<form class="">
+						<form class="" action="">
 						<h4>Presentación Oral</h4>
 							<h4>¿Te ha quedado una idea clara de la parte que ha expuesto?</h4>
 							<br>
-								<p><img src="">Alumno 1 Esto lo leerá de la base de datos</p>	
+								<p>Alumno 1 Esto lo leerá de la base de datos</p>	
 								<label>
-					  				<input type="radio" name="p1_alum1" value="encanta" />
-									<img src="img/1.jpg">
+					  				<input type="radio" name="p1_alum1" value="encanta" onchange="seleccionAmarilla()" />
+									<img src="img/1.jpg" name="cara">
 								</label>
 								<label>
 					  				<input type="radio" name="p1_alum1" value="sonrio" />
@@ -238,6 +247,7 @@
 								<br>
 									<input type="submit" class="btn btn-primary" name="btn_preg1">
 						</form>	
+						<br>
 				</div> <!-- Final div class col-md-12 -->
 			</div> <!-- Final div class row -->
 		</div> <!-- Final div class container-fluid -->

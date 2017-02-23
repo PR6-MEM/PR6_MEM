@@ -1,3 +1,6 @@
+<?php
+$id_proyecto = 1;
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -175,19 +178,23 @@
 			<!--  -->
 			<div class="row">
 				<div class="col-md-12 text-center">
-					<!-- habrá que hacer una consulta para obtener el titulo del proyecto  -->
-						<h2>Falta la consulta para obtener el título del proyecto </h2>
-					
-							
-                        <form>
-                         <!-- habrá que hacer una consulta para obtener las preguntas, con su y id y su texto correspondiente  -->
+				
+						
+					   <?php
+                        //<h2> consulta para obtener el título del proyecto </h2>
+                       
+                       echo"<input type='text'value=".$id_proyecto." style='display:none;'>";
+                       include("php/consulta_titulo.proc.php");
+                       ?>
+                        <form action="php/valorar_tribunal.proc.php" method="POST">
+                         <!-- hacer una consulta para obtener las preguntas, con su y id y su texto correspondiente  -->
                          <?php
-                         include("php/consulta_preguntas_tribunal.php");
-
+                        echo"<input type='text' name='id_proyecto' value=".$id_proyecto." style='display:none;'>";                  
+                        include("php/consulta_preguntas_tribunal.php");
                          //ya genera el contenido de las preguntas, luego habrá que cojer la puntuación de cada elemento
                          ?>
                         
-                        <input type="submit">
+                        <input type="submit" value="Enviar valoración">
                         </form> 
 				</div> <!-- Final div class col-md-12 -->
 			</div> <!-- Final div class row -->
