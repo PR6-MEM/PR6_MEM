@@ -42,10 +42,10 @@ $cont=0;
 				$preguntas_tribunal= mysqli_query($conexion, $sql) or die (mysqli_error());
 				
 				
-
+echo"<div class='col-lg-12' style='background-color:#B9B9B9, border-radius: 25px;'>";
 				while($pregunta = mysqli_fetch_array($preguntas_tribunal)){	
 
-					echo"<div class='col-lg-12' style='background-color:#DDDDDD'>";
+					
 					if($pregunta['id_pregunta_tribunal']  == 1 ){				
 					echo "<h3>Valoració de la presentació oral de ".$nom_alu." </h4>";
 					}
@@ -53,13 +53,18 @@ $cont=0;
 					//echo $matriculas[$cont];
 					//echo"<div class='col-lg-12' style='background-color:grey;'>";
 
+
+					//aqui generamos dinamicamente una array de inputs para luego al hacer el submit obtener las notas de cada pregunta y cada alumno
 					echo"<label>".$pregunta['pregunta_tribunal']."</label> 
+
+
 					<input type='number' name='notas[]' min='0' max='10' value='5'> <br><br><br>";
 					echo"<input type='hidden' name='idpreguntas[]' value='".$pregunta['id_pregunta_tribunal']."' >";
 					echo"<input type='hidden' name='matriculas[]' value=".$matriculas[$cont]." style='display:none;'>";
 					
-				echo"<br></div>";
+				
 				}
+				echo"<br></div>";
 				$cont++;
 			
 		

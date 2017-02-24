@@ -1,54 +1,63 @@
 <?php
 
  extract($_REQUEST);
-
+echo $id_proyecto;
 include("conexion.proc.php");
 
 //echo $nota_7138_3;
-$notas = array();
-$
-foreach ($notas as $nota ) {
+ 
+/*foreach ($notas as $nota ) {
 	echo $nota."<br>";
+
 }
 foreach ($idpreguntas as $id ) {
 	echo $id."<br>";
+	
 }
-
 foreach ($matriculas as $matric ) {
 	echo $matric."<br>";
+	
+}
+*/
+$id_tribunal = 0;
+
+
+		//primero hacemos una consulta para obtener el id de tribunal a partir del id proyecto
+		$sql = "SELECT `id_tribunal` FROM `bd_mem_app`.`tbl_proyecto` WHERE id_proyecto =".$id_proyecto;
+
+		$resultado= mysqli_query($conexion, $sql) or die (mysqli_error());
+
+		while($fila = mysqli_fetch_array($resultado)){	
+
+		$id_tribunal = $fila['id_tribunal'];
+			
+		} 
+
+//ahora hacemos otra connsulta para obtener los id integrante segun la matricula del alumno
+
+
+
+
+for ($cont=0; $cont < count($notas) ; $cont++) { 
+
+	$sql = "SELECT `id_integrante` FROM `bd_mem_app`.`tbl_integrante_proyecto` WHERE matricula_alumno = ".$matriculas[$cont];
+
+		$resultado= mysqli_query($conexion, $sql) or die (mysqli_error());
+
+		while($fila = mysqli_fetch_array($resultado)){	
+
+			$sql = "INSERT INTO `tbl_notas_tribunal` (`id_pregunta_tribunal`, `id_tribunal`, `valor_nota`, `id_integrante`) VALUES ( ".$idpreguntas[$cont].", ".$id_tribunal.", ".$notas[$cont].", ".$fila['id_integrante'].")";
+		} 
+		echo "<br>";
+			echo $notas[$cont]." ".$idpreguntas[$cont]." ".$matriculas[$cont]."<br>";
+		 echo $sql;	
+
+$resultado= mysqli_query($conexion, $sql) or die (mysqli_error());
+
 }
 
-//echo $variable;
-
-
-	//tenemos que sacar las notas de cada alumno y cada pregunta. la nomenclatura de las notas es nota_matricula_idpregunta
-
-	$consulta= "SELECT matricula_alumno FROM  tbl_integrante_proyecto WHERE id_proyecto=".$id_proyecto; 
-	//echo $consulta."<br>";
-	$resultado= mysqli_query($conexion, $consulta) or die (mysqli_error());
-	while($fila = mysqli_fetch_array($resultado)){	
-			
-
-			$sql= "SELECT id_pregunta_tribunal FROM  tbl_pregunta_tribunal "; 
-			//echo $sql."<br>";
-			$ids= mysqli_query($conexion, $sql) or die (mysqli_error());
-			while($id_pregunta = mysqli_fetch_array($ids)){	
-				
-				//$valor = $($fila['matricula_alumno']."-".$id_pregunta['id_pregunta_tribunal'])."<br>";	
-				array_push($notas,$valoracion);
-				//echo $valoracion;
-			}
-				
-		}
-
-
-
-
-		foreach ($notas as $nota) {
-			//echo $nota."<br>";
-
-		}
-	mysqli_close($conexion);
+mysqli_close($conexion);
 	//echo '</select>';
+	
 
 ?>
