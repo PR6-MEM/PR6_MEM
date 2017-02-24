@@ -13,6 +13,15 @@
 				{
 					$name = $fila['nombre_alumno']." ".$fila['apellido1_alumno'];
 				}
+
+	$consulta= "SELECT titulo_proyecto FROM tbl_proyecto WHERE fecha_proyecto like current_date"; 
+
+	$resultado= mysqli_query($conexion, $consulta) or die (mysqli_error());
+
+	while($fila = mysqli_fetch_array($resultado)){	
+		
+			$titulo = $fila['titulo_proyecto']."<br>";
+	}
 ?>
 
 <!DOCTYPE html>
@@ -62,21 +71,106 @@
 			background-color: #005cb9 !important;
 		}
 
+		.logoBase {
+			float: left
+		}
 
 	</style>
 
 	<script type="text/javascript">
 
-		function seleccionAmarilla (){
-			var imagen = document.getElementsByName('p1_alum1');
-			if (imagen[0].checked) {
-				cara.src = "img/1.1.jpg"
-			}
+		 function seleccionAmarilla_1 (){
+            var imagen = document.getElementsByName('p1_alum1');
+            var cara  =  document.getElementsByName('cara1');
+            if (imagen[0].checked) {
+                cara[0].src = "img/1.1.jpg";
+            }else{
+                cara[0].src = "img/1.jpg";
+            }
 
-		}
+            if (imagen[1].checked) {
+                 cara[1].src = "img/2.1.jpg";
+            }else{
+                cara[1].src = "img/2.jpg";
+            }
 
-		function deconecta(){
-			var deconecta  = confirm("¿Estás seguro que te quieres salir?");
+
+            if (imagen[2].checked) {
+                 cara[2].src = "img/3.1.jpg";
+            }else{
+                cara[2].src = "img/3.jpg";
+            }
+
+
+            if (imagen[3].checked) {
+                cara[3].src = "img/4.1.jpg";
+            }else{
+                cara[3].src = "img/4.jpg";
+            }
+        }
+
+        function seleccionAmarilla_2 (){
+            var imagen = document.getElementsByName('p1_alum2');
+            var cara  =  document.getElementsByName('cara2');
+            if (imagen[0].checked) {
+                cara[0].src = "img/1.1.jpg";
+            }else{
+                cara[0].src = "img/1.jpg";
+            }
+
+            if (imagen[1].checked) {
+                 cara[1].src = "img/2.1.jpg";
+            }else{
+                cara[1].src = "img/2.jpg";
+            }
+
+
+            if (imagen[2].checked) {
+                 cara[2].src = "img/3.1.jpg";
+            }else{
+                cara[2].src = "img/3.jpg";
+            }
+
+
+            if (imagen[3].checked) {
+                cara[3].src = "img/4.1.jpg";
+            }else{
+                cara[3].src = "img/4.jpg";
+            }
+        }
+
+        function seleccionAmarilla_3 (){
+            var imagen = document.getElementsByName('p1_alum3');
+            var cara  =  document.getElementsByName('cara3');
+            if (imagen[0].checked) {
+                cara[0].src = "img/1.1.jpg";
+            }else{
+                cara[0].src = "img/1.jpg";
+            }
+
+            if (imagen[1].checked) {
+                 cara[1].src = "img/2.1.jpg";
+            }else{
+                cara[1].src = "img/2.jpg";
+            }
+
+
+            if (imagen[2].checked) {
+                 cara[2].src = "img/3.1.jpg";
+            }else{
+                cara[2].src = "img/3.jpg";
+            }
+
+
+            if (imagen[3].checked) {
+                cara[3].src = "img/4.1.jpg";
+            }else{
+                cara[3].src = "img/4.jpg";
+            }
+        }
+
+		function desconecta(){
+			var desconecta  = confirm("¿Estás seguro que te quieres salir?");
 	    		return desconecta;
 		}
 
@@ -88,9 +182,9 @@
 
 	 <!-- Navigation -->
         <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
-        	<img src="img/base.jpg">
+        	<img class="logoBase" src="img/base.jpg">
           <!-- Top Menu Items -->
-            <ul class="nav navbar-right top-nav">
+            <ul class="nav navbar-right top-nav" style=" float:right!important">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
                     <ul class="dropdown-menu message-dropdown">
@@ -103,48 +197,18 @@
                                     <div class="media-body">
                                         <h5 class="media-heading"><strong><?php echo $name; ?></strong>
                                         </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-preview">
-                            <a href="#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading"><strong>J<?php echo $name; ?></strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-preview">
-                            <a href="#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading"><strong><?php echo $name; ?></strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i>Proyecto de hoy</p>
+                                        <p><?php echo $titulo; ?></p>
                                     </div>
                                 </div>
                             </a>
                         </li>
                         <li class="message-footer">
-                            <a href="#">Read All New Messages</a>
+                            <a href="#">Espacio destinado a futuros mensajes</a>
                         </li>
                     </ul>
                 </li>
-                <li class="dropdown">
+                <!-- <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
                     <ul class="dropdown-menu alert-dropdown">
                         <li>
@@ -170,18 +234,12 @@
                             <a href="#">View All</a>
                         </li>
                     </ul>
-                </li>
+                </li> -->
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $name; ?><b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                            <a href="../creacion de proyecto/php/ver_proyectos.php"><i class="fa fa-fw fa-undo"></i> Proyectos</a>
                         </li>
                         <li class="divider"></li>
                         <li>
@@ -218,56 +276,56 @@
 							<br>
 								<p> <?php include ("php/consulta_integrante1_proyecto.php");?></p>	
 								<label>
-					  				<input type="radio" name="p1_alum1" value="encanta" onclick="seleccionAmarilla()" />
-									<img src="img/1.jpg" name="cara">
+					  				<input type="radio" name="p1_alum1" value="encanta" onclick ="seleccionAmarilla_1()"  />
+									<img src="img/1.jpg" name="cara1">
 								</label>
 								<label>
-					  				<input type="radio" name="p1_alum1" value="sonrio" />
-									<img src="img/2.jpg">
+					  				<input type="radio" name="p1_alum1" value="sonrio" onclick="seleccionAmarilla_1()" />
+									<img src="img/2.jpg" name="cara1">
 								</label>
 								<label>
-					  				<input type="radio" name="p1_alum1" value="aburro" />
-									<img src="img/3.jpg">
+					  				<input type="radio" name="p1_alum1" value="aburro" onclick="seleccionAmarilla_1()"/>
+									<img src="img/3.jpg" name="cara1">
 								</label>
 								<label>
-					  				<input type="radio" name="p1_alum1" value="muero" />
-									<img src="img/4.jpg">
+					  				<input type="radio" name="p1_alum1" value="muero" onclick="seleccionAmarilla_1()" />
+									<img src="img/4.jpg" name="cara1">
 								</label>
 								<br>
 								<p><?php include ("php/consulta_integrante2_proyecto.php");?></p>	
 								<label>
-					  				<input type="radio" name="p1_alum2" value="encanta" />
-									<img src="img/1.jpg">
+					  				<input type="radio" name="p1_alum2" value="encanta" onclick="seleccionAmarilla_2()"/>
+									<img src="img/1.jpg" name="cara2">
 								</label>
 								<label>
-					  				<input type="radio" name="p1_alum2" value="sonrio" />
-									<img src="img/2.jpg">
+					  				<input type="radio" name="p1_alum2" value="sonrio" onclick="seleccionAmarilla_2()" />
+									<img src="img/2.jpg" name="cara2">
 								</label>
 								<label>
-					  				<input type="radio" name="p1_alum2" value="aburro" />
-									<img src="img/3.jpg">
+					  				<input type="radio" name="p1_alum2" value="aburro"  onclick="seleccionAmarilla_2()"/>
+									<img src="img/3.jpg" name="cara2">
 								</label>
 								<label>
-					  				<input type="radio" name="p1_alum2" value="muero" />
-									<img src="img/4.jpg">
+					  				<input type="radio" name="p1_alum2" value="muero" onclick="seleccionAmarilla_2()" />
+									<img src="img/4.jpg" name="cara2">
 								</label>
 								<br>
 								<p><?php include ("php/consulta_integrante3_proyecto.php");?></p>	
 								<label>
-					  				<input type="radio" name="p1_alum3" value="encanta" />
-									<img src="img/1.jpg">
+					  				<input type="radio" name="p1_alum3" value="encanta" onclick="seleccionAmarilla_3()" />
+									<img src="img/1.jpg" name="cara3">
 								</label>
 								<label>
-					  				<input type="radio" name="p1_alum3" value="sonrio" />
-									<img src="img/2.jpg">
+					  				<input type="radio" name="p1_alum3" value="sonrio" onclick="seleccionAmarilla_3()" />
+									<img src="img/2.jpg" name="cara3">
 								</label>
 								<label>
-					  				<input type="radio" name="p1_alum3" value="aburro" />
-									<img src="img/3.jpg">
+					  				<input type="radio" name="p1_alum3" value="aburro" onclick="seleccionAmarilla_3()"/>
+									<img src="img/3.jpg" name="cara3">
 								</label>
 								<label>
-					  				<input type="radio" name="p1_alum3" value="muero" />
-									<img src="img/4.jpg">
+					  				<input type="radio" name="p1_alum3" value="muero" onclick="seleccionAmarilla_3()"/>
+									<img src="img/4.jpg" name="cara3">
 								</label>
 								<br>
 									<input type="submit" class="btn btn-primary" name="btn_preg1">
