@@ -87,18 +87,28 @@
 						//SELECT * FROM `tbl_tribunal` WHERE `id_profesor2` LIKE 'David.marin' OR `id_profesor1`  LIKE 'David.marin'  OR `id_profesor1`  LIKE 'David.marin'
 						/*
 							SELECT * 
-							FROM bl_proyecto` 
+							FROM tbl_proyecto` 
 								INNER JOIN `tbl_tribunal` 
 									ON tbl_proyecto.id_tribunal = tbl_tribunal.id_tribunal
     							INNER JOIN `tbl_profesor`
     								ON tbl_tribunal.id_profesor1 = tbl_profesor.usuario_profesor
+    							WHERE `id_profesor2` LIKE 'David.marin' OR `id_profesor1`  LIKE 'David.marin'  OR `id_profesor1`  LIKE 'David.marin'
 						*/
-						 $sql = "SELECT * FROM `tbl_proyecto` WHERE `fecha_proyecto` > '".$fecha_actual."'  ";
+						 $sql = "SELECT * FROM `tbl_proyecto` WHERE `fecha_proyecto` = '".$fecha_actual."'  ";
 
 						 $result	=	mysqli_query($conexion,$sql);
 
 						 if(isset($_SESSION['tipo']) AND $_SESSION['tipo']=='2')
 						{
+							 $sql = "SELECT * 
+										FROM `tbl_proyecto` 
+											INNER JOIN `tbl_tribunal` 
+											ON tbl_proyecto.id_tribunal = tbl_tribunal.id_tribunal
+    										INNER JOIN `tbl_profesor`
+    										ON tbl_tribunal.id_profesor1 = tbl_profesor.usuario_profesor
+    										WHERE `id_profesor2` LIKE '".$name."' OR `id_profesor1`  LIKE '".$name."'  OR `id_profesor1`  LIKE '".$name."'";
+    							//echo $sql;die;
+						 	 $result	=	mysqli_query($conexion,$sql);
 							while ($fila = mysqli_fetch_array($result)) 
 							{
 								echo "<div class='proyect  col-lg-6'>";
@@ -119,7 +129,7 @@
 						echo "</div>";
 					}
 			}
-				 echo $sql;die;
+				 //echo $sql;die;
 					?>
 					
 				</div>

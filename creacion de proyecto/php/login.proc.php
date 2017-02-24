@@ -63,5 +63,9 @@
 						//header("location:ver_proyectos.php");
 					}
 				}
+				else{
+					echo "<script type='text/javascript'>alert('Usuario o contraseña incorrectos');
+						location.href='../../index.html';</script>";
+				}
 			}
 ?>
