@@ -1,3 +1,28 @@
+<?php
+	require_once("php/conexion.proc.php");
+	session_start();
+	if(!isset ($_SESSION['user']))
+	{
+		echo "<script type='text/javascript'>alert('No esta registrado');
+					location.href='../../index.html';</script>";
+					die;
+	}
+	$sql="SELECT * FROM `tbl_alumno` WHERE `matricula_alumno` = ".$_SESSION['user']."";
+	$result	=	mysqli_query($conexion,$sql);
+	while ($fila = mysqli_fetch_array($result)) 
+				{
+					$name = $fila['nombre_alumno']." ".$fila['apellido1_alumno'];
+				}
+
+	$consulta= "SELECT titulo_proyecto FROM tbl_proyecto WHERE fecha_proyecto like current_date"; 
+
+	$resultado= mysqli_query($conexion, $consulta) or die (mysqli_error());
+
+	while($fila = mysqli_fetch_array($resultado)){	
+		
+			$titulo = $fila['titulo_proyecto']."<br>";
+	}
+?>
 
 <!DOCTYPE html>
 <html>
@@ -38,31 +63,72 @@
 		}
 		label > input:checked + img{ /* Le doy estilo a la imagen cuando está checkeada */
 		  border:2px solid #005cb9;
-		  border-radius: 50px;
+		  border-radius: 40px;
+		 
+
+		}
+		.navbar-custom {
+			background-color: #005cb9 !important;
+		}
+
+		.logoBase {
+			float: left
 		}
 
 	</style>
+
+	<script type="text/javascript">
+
+		 function seleccionAmarilla_1 (){
+            var imagen = document.getElementsByName('p5_alum1');
+            var cara  =  document.getElementsByName('cara1');
+            if (imagen[0].checked) {
+                cara[0].src = "img/1.1.jpg";
+            }else{
+                cara[0].src = "img/1.jpg";
+            }
+
+            if (imagen[1].checked) {
+                 cara[1].src = "img/2.1.jpg";
+            }else{
+                cara[1].src = "img/2.jpg";
+            }
+
+
+            if (imagen[2].checked) {
+                 cara[2].src = "img/3.1.jpg";
+            }else{
+                cara[2].src = "img/3.jpg";
+            }
+
+
+            if (imagen[3].checked) {
+                cara[3].src = "img/4.1.jpg";
+            }else{
+                cara[3].src = "img/4.jpg";
+            }
+        }
+
+       
+
+		function desconecta(){
+			var desconecta  = confirm("Segur que vols sortir?");
+	    		return desconecta;
+		}
+
+	</script>
+
 <body>
 
 <div class="wrapper">
 
 	 <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                 <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-<!--                 <a class="navbar-brand" href="index.html">SB Admin //esto va fuera</a>
-             <img src="img/base.jpg">
- -->        
- 		    </div>
-            <!-- Top Menu Items -->
-            <ul class="nav navbar-right top-nav">
+        <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        	<img class="logoBase" src="img/base.jpg">
+          <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav" style=" float:right!important">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-calendar-o"></i> <b class="caret"></b></a>
                     <ul class="dropdown-menu message-dropdown">
                         <li class="message-preview">
                             <a href="#">
@@ -71,50 +137,20 @@
                                         <img class="media-object" src="http://placehold.it/50x50" alt="">
                                     </span>
                                     <div class="media-body">
-                                        <h5 class="media-heading"><strong>John Smith</strong>
+                                        <h5 class="media-heading"><strong><?php echo $name; ?></strong>
                                         </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-preview">
-                            <a href="#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading"><strong>John Smith</strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-preview">
-                            <a href="#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading"><strong>John Smith</strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i>Proyecto de hoy</p>
+                                        <p><?php echo $titulo; ?></p>
                                     </div>
                                 </div>
                             </a>
                         </li>
                         <li class="message-footer">
-                            <a href="#">Read All New Messages</a>
+                            <a href="#">Espacio destinado a futuros mensajes</a>
                         </li>
                     </ul>
                 </li>
-                <li class="dropdown">
+                <!-- <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
                     <ul class="dropdown-menu alert-dropdown">
                         <li>
@@ -140,22 +176,16 @@
                             <a href="#">View All</a>
                         </li>
                     </ul>
-                </li>
+                </li> -->
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $name; ?><b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                            <a href="../creacion de proyecto/php/ver_proyectos.php"><i class="fa fa-fw fa-undo"></i> Proyectos</a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a href="../index.html" onclick=" return desconecta(); "><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>
@@ -171,7 +201,10 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-12">
-					<h2 class="page-header text-center">Proyecto tal tal tal tal </h2>
+				<!-- habrá que hacer una consulta para obtener el titulo del proyecto  -->
+					<?php include("php/consulta_titulo.proc.php");?>
+					<!-- esta parte se genera dinámicamente por el php -->
+					<!-- <h2 class="page-header text-center">Proyecto tal tal tal tal <small> <br>Me encanta! <img src="img/5.jpg"> Sonries? <img src="img/6.jpg"> Te aburres? <img src="img/7.jpg"> o no te ha gustado nada?<img src="img/8.jpg"></small></h2> -->
 				</div>
 			</div> <!-- Final div class row -->
 			<!--  -->
@@ -179,29 +212,37 @@
 				<div class="col-md-12 text-center">
 					<!-- internamente el amor=10 sonrio=7 aburro=5 muero=2 -->
 						
-						<form class="">
-						<h3>Contenidos</h3>
-							<h4>¿T'ha quedat clar el contingut del projecte?</h4>
+						<form class="" action="php/submit5.proc.php">
+						<h4>Presentación Oral</h4>
+							<h4>T'ha quedat clar el contingut del projecte?</h4>
 							<br>
-								<p> Respuesta general para los tres así que ya veré cómo lo paso</p>	
 								<label>
-					  				<input type="radio" name="p5_alum1" value="encanta" />
-									<img src="img/1.jpg">
-								</label>
-								<label>
-					  				<input type="radio" name="p5_alum1" value="sonrio" />
-									<img src="img/2.jpg">
-								</label>
-								<label>
-					  				<input type="radio" name="p5_alum1" value="aburro" />
-									<img src="img/3.jpg">
-								</label>
-								<label>
-					  				<input type="radio" name="p5_alum1" value="muero" />
-									<img src="img/4.jpg">
-								</label>
-								<br>		<br>
-									<input type="submit" class="btn btn-primary" name="btn_preg5">
+                                    <input type="radio" name="p5_alum1" value="10" onclick ="seleccionAmarilla_1()"  />
+                                    <input type="hidden" name="p5_alum2" value="10" onclick ="seleccionAmarilla_1()"  />
+                                    <input type="hidden" name="p5_alum3" value="10" onclick ="seleccionAmarilla_1()"  />
+                                    <img src="img/1.jpg" name="cara1">
+                                </label>
+                                <label>
+                                    <input type="radio" name="p5_alum1" value="7" onclick="seleccionAmarilla_1()" />
+                                    <input type="hidden" name="p5_alum2" value="7" onclick ="seleccionAmarilla_1()"  />
+                                    <input type="hidden" name="p5_alum3" value="7" onclick ="seleccionAmarilla_1()"  />
+                                    <img src="img/2.jpg" name="cara1">
+                                </label>
+                                <label>
+                                    <input type="radio" name="p5_alum1" value="4" onclick="seleccionAmarilla_1()"/>
+                                    <input type="hidden" name="p5_alum2" value="4" onclick ="seleccionAmarilla_1()"  />
+                                    <input type="hidden" name="p5_alum3" value="4" onclick ="seleccionAmarilla_1()"  />
+                                    <img src="img/3.jpg" name="cara1">
+                                </label>
+                                <label>
+                                    <input type="radio" name="p5_alum1" value="2" onclick="seleccionAmarilla_1()" />
+                                    <input type="hidden" name="p5_alum2" value="2" onclick ="seleccionAmarilla_1()"  />
+                                    <input type="hidden" name="p5_alum3" value="2" onclick ="seleccionAmarilla_1()"  />
+                                    <img src="img/4.jpg" name="cara1">
+                                </label>
+								<br>
+                                    <input type="hidden" name="id_proyecto" value=<?php echo  $id_proyecto  ?> >
+									<input type="submit" class="btn btn-primary" name="submit5">
 						</form>	
 						<br>
 				</div> <!-- Final div class col-md-12 -->
@@ -223,5 +264,3 @@
 
 </body>
 </html>
-
-
