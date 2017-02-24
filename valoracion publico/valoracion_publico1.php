@@ -185,8 +185,12 @@
         	<img class="logoBase" src="img/base.jpg">
           <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav" style=" float:right!important">
+                <!-- SERIA INTERESANTE QUE ESTUVIERA VISIBLE PERO OJO EN EL FORMATO MÓVIL NO QUEDA BIEN -->
+               <!--  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-undo"></i> Cambiar de proyecto<b class="caret"></b></a>
+                </li> -->
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-calendar-o"></i> <b class="caret"></b></a>
                     <ul class="dropdown-menu message-dropdown">
                         <li class="message-preview">
                             <a href="#">
@@ -239,7 +243,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $name; ?><b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="../creacion de proyecto/php/ver_proyectos.php"><i class="fa fa-fw fa-undo"></i> Proyectos</a>
+                            <a href="../creacion de proyecto/php/ver_proyectos.php"><i class="fa fa-fw fa-undo"></i> Volver a Proyectos</a>
                         </li>
                         <li class="divider"></li>
                         <li>
@@ -270,65 +274,66 @@
 				<div class="col-md-12 text-center">
 					<!-- internamente el amor=10 sonrio=7 aburro=5 muero=2 -->
 						
-						<form class="" action="">
+						<form class="" action="php/submit1.proc.php">
 						<h4>Presentación Oral</h4>
 							<h4>¿Te ha quedado una idea clara de la parte que ha expuesto?</h4>
 							<br>
 								<p> <?php include ("php/consulta_integrante1_proyecto.php");?></p>	
 								<label>
-					  				<input type="radio" name="p1_alum1" value="encanta" onclick ="seleccionAmarilla_1()"  />
+					  				<input type="radio" name="p1_alum1" value="10" onclick ="seleccionAmarilla_1()"  />
 									<img src="img/1.jpg" name="cara1">
 								</label>
 								<label>
-					  				<input type="radio" name="p1_alum1" value="sonrio" onclick="seleccionAmarilla_1()" />
+					  				<input type="radio" name="p1_alum1" value="7" onclick="seleccionAmarilla_1()" />
 									<img src="img/2.jpg" name="cara1">
 								</label>
 								<label>
-					  				<input type="radio" name="p1_alum1" value="aburro" onclick="seleccionAmarilla_1()"/>
+					  				<input type="radio" name="p1_alum1" value="4" onclick="seleccionAmarilla_1()"/>
 									<img src="img/3.jpg" name="cara1">
 								</label>
 								<label>
-					  				<input type="radio" name="p1_alum1" value="muero" onclick="seleccionAmarilla_1()" />
+					  				<input type="radio" name="p1_alum1" value="2" onclick="seleccionAmarilla_1()" />
 									<img src="img/4.jpg" name="cara1">
 								</label>
 								<br>
 								<p><?php include ("php/consulta_integrante2_proyecto.php");?></p>	
 								<label>
-					  				<input type="radio" name="p1_alum2" value="encanta" onclick="seleccionAmarilla_2()"/>
+					  				<input type="radio" name="p1_alum2" value="10" onclick="seleccionAmarilla_2()"/>
 									<img src="img/1.jpg" name="cara2">
 								</label>
 								<label>
-					  				<input type="radio" name="p1_alum2" value="sonrio" onclick="seleccionAmarilla_2()" />
+					  				<input type="radio" name="p1_alum2" value="7" onclick="seleccionAmarilla_2()" />
 									<img src="img/2.jpg" name="cara2">
 								</label>
 								<label>
-					  				<input type="radio" name="p1_alum2" value="aburro"  onclick="seleccionAmarilla_2()"/>
+					  				<input type="radio" name="p1_alum2" value="4"  onclick="seleccionAmarilla_2()"/>
 									<img src="img/3.jpg" name="cara2">
 								</label>
 								<label>
-					  				<input type="radio" name="p1_alum2" value="muero" onclick="seleccionAmarilla_2()" />
+					  				<input type="radio" name="p1_alum2" value="2" onclick="seleccionAmarilla_2()" />
 									<img src="img/4.jpg" name="cara2">
 								</label>
 								<br>
 								<p><?php include ("php/consulta_integrante3_proyecto.php");?></p>	
 								<label>
-					  				<input type="radio" name="p1_alum3" value="encanta" onclick="seleccionAmarilla_3()" />
+					  				<input type="radio" name="p1_alum3" value="10" onclick="seleccionAmarilla_3()" />
 									<img src="img/1.jpg" name="cara3">
 								</label>
 								<label>
-					  				<input type="radio" name="p1_alum3" value="sonrio" onclick="seleccionAmarilla_3()" />
+					  				<input type="radio" name="p1_alum3" value="7" onclick="seleccionAmarilla_3()" />
 									<img src="img/2.jpg" name="cara3">
 								</label>
 								<label>
-					  				<input type="radio" name="p1_alum3" value="aburro" onclick="seleccionAmarilla_3()"/>
+					  				<input type="radio" name="p1_alum3" value="4" onclick="seleccionAmarilla_3()"/>
 									<img src="img/3.jpg" name="cara3">
 								</label>
 								<label>
-					  				<input type="radio" name="p1_alum3" value="muero" onclick="seleccionAmarilla_3()"/>
+					  				<input type="radio" name="p1_alum3" value="2" onclick="seleccionAmarilla_3()"/>
 									<img src="img/4.jpg" name="cara3">
 								</label>
 								<br>
-									<input type="submit" class="btn btn-primary" name="btn_preg1">
+                                    <input type="hidden" name="id_proyecto" value=<?php echo  $id_proyecto  ?> >
+									<input type="submit" class="btn btn-primary" name="submit1">
 						</form>	
 						<br>
 				</div> <!-- Final div class col-md-12 -->

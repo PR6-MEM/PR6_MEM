@@ -80,7 +80,7 @@
 	<script type="text/javascript">
 
 		 function seleccionAmarilla_1 (){
-            var imagen = document.getElementsByName('p2_alum1');
+            var imagen = document.getElementsByName('p6_alum1');
             var cara  =  document.getElementsByName('cara1');
             if (imagen[0].checked) {
                 cara[0].src = "img/1.1.jpg";
@@ -109,68 +109,10 @@
             }
         }
 
-        function seleccionAmarilla_2 (){
-            var imagen = document.getElementsByName('p2_alum2');
-            var cara  =  document.getElementsByName('cara2');
-            if (imagen[0].checked) {
-                cara[0].src = "img/1.1.jpg";
-            }else{
-                cara[0].src = "img/1.jpg";
-            }
-
-            if (imagen[1].checked) {
-                 cara[1].src = "img/2.1.jpg";
-            }else{
-                cara[1].src = "img/2.jpg";
-            }
-
-
-            if (imagen[2].checked) {
-                 cara[2].src = "img/3.1.jpg";
-            }else{
-                cara[2].src = "img/3.jpg";
-            }
-
-
-            if (imagen[3].checked) {
-                cara[3].src = "img/4.1.jpg";
-            }else{
-                cara[3].src = "img/4.jpg";
-            }
-        }
-
-        function seleccionAmarilla_3 (){
-            var imagen = document.getElementsByName('p2_alum3');
-            var cara  =  document.getElementsByName('cara3');
-            if (imagen[0].checked) {
-                cara[0].src = "img/1.1.jpg";
-            }else{
-                cara[0].src = "img/1.jpg";
-            }
-
-            if (imagen[1].checked) {
-                 cara[1].src = "img/2.1.jpg";
-            }else{
-                cara[1].src = "img/2.jpg";
-            }
-
-
-            if (imagen[2].checked) {
-                 cara[2].src = "img/3.1.jpg";
-            }else{
-                cara[2].src = "img/3.jpg";
-            }
-
-
-            if (imagen[3].checked) {
-                cara[3].src = "img/4.1.jpg";
-            }else{
-                cara[3].src = "img/4.jpg";
-            }
-        }
+        
 
 		function desconecta(){
-			var desconecta  = confirm("¿Estás seguro que te quieres salir?");
+			var desconecta  = confirm("Segur que vols sortir?");
 	    		return desconecta;
 		}
 
@@ -185,6 +127,7 @@
         	<img class="logoBase" src="img/base.jpg">
           <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav" style=" float:right!important">
+                
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-calendar-o"></i> <b class="caret"></b></a>
                     <ul class="dropdown-menu message-dropdown">
@@ -258,9 +201,9 @@
 	<div id="page-wrapper">
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-12">
+				<div class="col-md-12" class="text-center">
 				<!-- habrá que hacer una consulta para obtener el titulo del proyecto  -->
-					<?php include("php/consulta_titulo.proc.php");?>
+                    
 					<!-- esta parte se genera dinámicamente por el php -->
 					<!-- <h2 class="page-header text-center">Proyecto tal tal tal tal <small> <br>Me encanta! <img src="img/5.jpg"> Sonries? <img src="img/6.jpg"> Te aburres? <img src="img/7.jpg"> o no te ha gustado nada?<img src="img/8.jpg"></small></h2> -->
 				</div>
@@ -269,70 +212,12 @@
 			<div class="row">
 				<div class="col-md-12 text-center">
 					<!-- internamente el amor=10 sonrio=7 aburro=5 muero=2 -->
-						
-						<form class="" action="php/submit2.proc.php">
-						<h4>Presentación Oral</h4>
-							<h4>Com valores la seva expressió oral?</h4>
-							<br>
-								<p> <?php include ("php/consulta_integrante1_proyecto.php");?></p>	
-								<label>
-					  				<input type="radio" name="p2_alum1" value="10" onclick ="seleccionAmarilla_1()"  />
-									<img src="img/1.jpg" name="cara1">
-								</label>
-								<label>
-					  				<input type="radio" name="p2_alum1" value="7" onclick="seleccionAmarilla_1()" />
-									<img src="img/2.jpg" name="cara1">
-								</label>
-								<label>
-					  				<input type="radio" name="p2_alum1" value="4" onclick="seleccionAmarilla_1()"/>
-									<img src="img/3.jpg" name="cara1">
-								</label>
-								<label>
-					  				<input type="radio" name="p2_alum1" value="2" onclick="seleccionAmarilla_1()" />
-									<img src="img/4.jpg" name="cara1">
-								</label>
-								<br>
-								<p><?php include ("php/consulta_integrante2_proyecto.php");?></p>	
-								<label>
-					  				<input type="radio" name="p2_alum2" value="10" onclick="seleccionAmarilla_2()"/>
-									<img src="img/1.jpg" name="cara2">
-								</label>
-								<label>
-					  				<input type="radio" name="p2_alum2" value="7" onclick="seleccionAmarilla_2()" />
-									<img src="img/2.jpg" name="cara2">
-								</label>
-								<label>
-					  				<input type="radio" name="p2_alum2" value="4"  onclick="seleccionAmarilla_2()"/>
-									<img src="img/3.jpg" name="cara2">
-								</label>
-								<label>
-					  				<input type="radio" name="p2_alum2" value="2" onclick="seleccionAmarilla_2()" />
-									<img src="img/4.jpg" name="cara2">
-								</label>
-								<br>
-								<p><?php include ("php/consulta_integrante3_proyecto.php");?></p>	
-								<label>
-					  				<input type="radio" name="p2_alum3" value="10" onclick="seleccionAmarilla_3()" />
-									<img src="img/1.jpg" name="cara3">
-								</label>
-								<label>
-					  				<input type="radio" name="p2_alum3" value="7" onclick="seleccionAmarilla_3()" />
-									<img src="img/2.jpg" name="cara3">
-								</label>
-								<label>
-					  				<input type="radio" name="p2_alum3" value="4" onclick="seleccionAmarilla_3()"/>
-									<img src="img/3.jpg" name="cara3">
-								</label>
-								<label>
-					  				<input type="radio" name="p2_alum3" value="2" onclick="seleccionAmarilla_3()"/>
-									<img src="img/4.jpg" name="cara3">
-								</label>
-								<br>    
-                                    <input type="hidden" name="id_proyecto" value=<?php echo  $id_proyecto  ?> >
-
-									<input type="submit" class="btn btn-primary" name="submit2">
-						</form>	
-						<br>
+                        <br>
+                        <h1>Moltes gràcies per la teva votació</h1>
+                        <img src="img/5.1.jpg">
+                        <br>
+                    
+                        <br>
 				</div> <!-- Final div class col-md-12 -->
 			</div> <!-- Final div class row -->
 		</div> <!-- Final div class container-fluid -->
