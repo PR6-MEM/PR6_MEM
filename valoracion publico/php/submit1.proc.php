@@ -24,13 +24,33 @@ session_start();
 echo $p1_alum1;
 echo $p1_alum2;
 echo $p1_alum3;
-echo $id_proyecto; 
+echo $id_proyecto;
+
+// $alumnos = array($p1_alum1, $p1_alum2, $p1_alum3);
+
+// echo $alumnos;
+
+
+$consulta = "SELECT * from `tbl_integrante_proyecto` WHERE `id_proyecto` = ".$id_proyecto."";
+
+$resultado = mysqli_query($conexion, $consulta) or die (mysqli_error());
+
+
+while ($fila =mysqli_fetch_array($resultado)){
+	echo $fila['id_integrante'];
+
+
+}
+
+// $sql= "INSERT INTO `tbl_notas_publico` ( `id_pregunta_publico`, `matricula_alumno_publico`, `valor_nota`, `id_integrante`) VALUES ('1', ".$_SESSION['user'].", ".$p1_alum1.", ".$fila['id_integrante'].")";
+
+
 
 //En este caso como no generamos dinámicamente las preguntas podemos ponerlo directamente. 
-INSERT INTO `tbl_notas_publico` (`id_notas_publico`, `id_pregunta_publico`, `matricula_alumno_publico`, `valor_nota`, `id_integrante`) VALUES (NULL, '1', '10000585', '10', '1');
 
 
-header ("location:../valoracion_publico2.php?id_proyecto=$id_proyecto");
+
+//header ("location:../valoracion_publico2.php?id_proyecto=$id_proyecto");
 
 //
 
