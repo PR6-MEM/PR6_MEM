@@ -168,19 +168,52 @@ $id_proyecto = 1;
 
 <!-- parte central - votación -->
 	<div id="page-wrapper">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-12">
+		<!DOCTYPE html>
+<html>
+<head>
+    <title>Valoración del tribunal</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css" >
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
+        <script type="text/javascript" src="js/validacion.js"> </script>
+</head>
+    <style type="text/css">
+
+        label > input{ /* Oculto el botón de radio */
+          visibility: hidden; /* hace que el input no sea clicable*/
+          position: absolute; 
+        }
+        label > input + img{ /* estilo para la imagen */
+          cursor:pointer;
+          border:2px solid transparent;
+        }
+        label > input:checked + img{ /* Le doy estilo a la imagen cuando está checkeada */
+          border:2px solid #005cb9;
+          border-radius: 50px;
+        }
+
+    </style>
+<body>
+
+<div class="wrapper">
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
                 
-					<h1 class="page-header text-center">VALORACION TRIBUNAL</h1>
-				</div>
-			</div> <!-- Final div class row -->
-			<!--  -->
-			<div class="row">
-				<div class="col-md-12 text-center">
-				
-						
-					   <?php
+                    <h1 class="page-header text-center">VALORACION TRIBUNAL</h1>
+                </div>
+            </div> <!-- Final div class row -->
+            <!--  -->
+            <div class="row">
+                <div class="col-md-12 text-center">
+                
+                        
+                       <?php
                         //<h2> consulta para obtener el título del proyecto </h2>
                      
                       //echo"<input type='text'value=".$id_proyecto." style='display:none;'>";
@@ -201,11 +234,11 @@ $id_proyecto = 1;
                         
                         <input type="submit" value="Enviar valoración">
                         </form> 
-				</div> <!-- Final div class col-md-12 -->
-			</div> <!-- Final div class row -->
-		</div> <!-- Final div class container-fluid -->
-	</div> <!-- Final div class page-wrapper -->
-</div>  <!-- Final div class wrapper -->	
+                </div> <!-- Final div class col-md-12 -->
+            </div> <!-- Final div class row -->
+        </div> <!-- Final div class container-fluid -->
+    </div> <!-- Final div class page-wrapper -->
+</div>  <!-- Final div class wrapper -->    
 
 <!-- jQuery -->
     <script src="js/jquery.js"></script>

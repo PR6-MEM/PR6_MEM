@@ -6,12 +6,12 @@ include ("../php/conexion.proc.php");
 $nombres = array();
 $matriculas = array();
 //primero realizamos una consulta para obtener las matriculas de los integrantes del proyecto seleccionado.
+
+
 $consulta= "SELECT matricula_alumno FROM  tbl_integrante_proyecto WHERE id_proyecto =". $id_proyecto; 
 
 
 $resultado= mysqli_query($conexion, $consulta) or die (mysqli_error());
-
-
 
 //ahora para cada matricula haremos otra consulta para sacar los  nombres de cada matricula
 while($fila = mysqli_fetch_array($resultado)){	
@@ -32,10 +32,6 @@ while($fila = mysqli_fetch_array($resultado)){
 $cont=0;
 //y ahora para cada nombre de la array hacemos una consulta para generar las preguntas a cada alumno
 	foreach ($nombres as $nom_alu) {
-
-		
-				
-
 				$sql= "SELECT * FROM tbl_pregunta_tribunal WHERE id_pregunta_tribunal < 5"; 
 
 				//echo $sql;
@@ -48,6 +44,7 @@ echo"<div class='col-lg-12' style='background-color:#B9B9B9, border-radius: 25px
 					
 					if($pregunta['id_pregunta_tribunal']  == 1 ){				
 					echo "<h3>Valoració de la presentació oral de ".$nom_alu." </h4>";
+					echo"<input type='hidden' name='nombres_alu[]' value='".$nom_alu."' >";
 					}
 					//echo $nom_alu;
 					//echo $matriculas[$cont];
@@ -66,9 +63,7 @@ echo"<div class='col-lg-12' style='background-color:#B9B9B9, border-radius: 25px
 				}
 				echo"<br></div>";
 				$cont++;
-			
-		
-				
+						
 	}
 			//".$matriculas[$cont]."-".$pregunta['id_pregunta_tribunal']."
 			//y ahora generamos las preguntas globales de la presentación
@@ -85,8 +80,11 @@ echo"<div class='col-lg-12' style='background-color:#B9B9B9, border-radius: 25px
 					echo "<h3>Valoració del contingut de la presentació (global) </h3>";
 		
 					}								
-					echo"<label>".$pregunta['pregunta_tribunal']."</label> <input type='number' name='nota_global_".$pregunta['id_pregunta_tribunal']."' min='0' max='10' value='5'> <br><br><br>";
-					echo"<input type='text'value='".$pregunta['id_pregunta_tribunal']."' style='display:none;'>";
+					echo"<label>".$pregunta['pregunta_tribunal']."</label> 
+
+					<input type='number' name='notas_globales[]' min='0' max='10' value='5'> <br><br><br>";
+
+					echo"<input type='hidden' value=".$pregunta['id_pregunta_tribunal']." name='id_pregunta_global[]' >";
 
 				}
 
