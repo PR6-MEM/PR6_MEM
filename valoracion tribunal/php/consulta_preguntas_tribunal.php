@@ -49,12 +49,14 @@ $cont=0;
 					if($pregunta['id_pregunta_tribunal']  == 1 ){				
 					echo "<h3>Valoració de la presentació oral de ".$nom_alu." </h4>";
 					}
-					echo $nom_alu;
-				echo $matriculas[$cont];
+					//echo $nom_alu;
+					//echo $matriculas[$cont];
 					//echo"<div class='col-lg-12' style='background-color:grey;'>";
-					echo"<label>".$pregunta['pregunta_tribunal']."</label> <input type='number' name='nota_".$matriculas[$cont]."_".$pregunta['id_pregunta_tribunal']."' min='0' max='10' value='5'> <br><br><br>";
-					echo"<input type='text'value='".$pregunta['id_pregunta_tribunal']."' style='display:none;'>";
 
+					echo"<label>".$pregunta['pregunta_tribunal']."</label> 
+					<input type='number' name='notas[]' min='0' max='10' value='5'> <br><br><br>";
+					echo"<input type='hidden' name='idpreguntas[]' value='".$pregunta['id_pregunta_tribunal']."' >";
+					echo"<input type='hidden' name='matriculas[]' value=".$matriculas[$cont]." style='display:none;'>";
 					
 				echo"<br></div>";
 				}
@@ -63,7 +65,7 @@ $cont=0;
 		
 				
 	}
-		
+			//".$matriculas[$cont]."-".$pregunta['id_pregunta_tribunal']."
 			//y ahora generamos las preguntas globales de la presentación
 
 				$sql= "SELECT * FROM tbl_pregunta_tribunal WHERE id_pregunta_tribunal >= 5"; 
