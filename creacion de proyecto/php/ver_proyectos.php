@@ -42,14 +42,7 @@
 
    <script type="text/javascript">
 
-		function seleccionAmarilla (){
-			var imagen = document.getElementsByName('p1_alum1');
-			if (imagen[0].checked) {
-				cara.src = "img/1.1.jpg"
-			}
-
-		}
-
+		
 		function desconecta(){
 			return confirm("¿Estas seguro que te quieres desconectar?");
 			
@@ -59,28 +52,7 @@
 
 
 </head>
-	<style type="text/css">
 
-		label > input{ /* Oculto el botón de radio */
-		  visibility: hidden; /* hace que el input no sea clicable*/
-		  position: absolute; 
-		}
-		label > input + img{ /* estilo para la imagen */
-		  cursor:pointer;
-		  border:2px solid transparent;
-		}
-		label > input:checked + img{ /* Le doy estilo a la imagen cuando está checkeada */
-		  border:2px solid #005cb9;
-		  border-radius: 50px;
-		 
-
-		}
-		.navbar-custom {
-			background-color: #005cb9 !important;
-		}
-
-
-	</style>
 
 	
 <body>
@@ -89,24 +61,21 @@
 
 	 <!-- Navigation -->
         <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        	<img class="logoBase" src="../../valoracion publico/img/base.jpg">
           <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
                 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $name; ?><b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        
                             <a href="logout.proc.php" onclick=" return desconecta(); "><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>
             </ul>
-            
+
             <!-- /.navbar-collapse -->
         </nav>
-
-
-
 <!-- parte central - votación -->
 	<div id="page-wrapper">
 		<div class="container-fluid">
@@ -114,9 +83,20 @@
 				<div class="col-md-12">
 				<!-- habrá que hacer una consulta para obtener el titulo del proyecto  -->
 					<?php 
+						$fecha_actual=date("Y-m-d");
+						//SELECT * FROM `tbl_tribunal` WHERE `id_profesor2` LIKE 'David.marin' OR `id_profesor1`  LIKE 'David.marin'  OR `id_profesor1`  LIKE 'David.marin'
+						/*
+							SELECT * 
+							FROM bl_proyecto` 
+								INNER JOIN `tbl_tribunal` 
+									ON tbl_proyecto.id_tribunal = tbl_tribunal.id_tribunal
+    							INNER JOIN `tbl_profesor`
+    								ON tbl_tribunal.id_profesor1 = tbl_profesor.usuario_profesor
+						*/
+						 $sql = "SELECT * FROM `tbl_proyecto` WHERE `fecha_proyecto` > '".$fecha_actual."'  ";
 
-						 $sql = "SELECT * FROM `tbl_proyecto` ";
 						 $result	=	mysqli_query($conexion,$sql);
+
 						 if(isset($_SESSION['tipo']) AND $_SESSION['tipo']=='2')
 						{
 							while ($fila = mysqli_fetch_array($result)) 
@@ -129,6 +109,7 @@
 								echo "</div>";
 							}
 						}
+
 			 else
 		 	{
 				while ($fila = mysqli_fetch_array($result)) 
@@ -138,12 +119,11 @@
 						echo "</div>";
 					}
 			}
+				 echo $sql;die;
 					?>
 					
 				</div>
 			</div> <!-- END show_proyects-->
-			<!--  -->
-
 		</div> <!-- Final div class container-fluid -->
 	</div>  <!-- Final div class wrapper -->	
 
