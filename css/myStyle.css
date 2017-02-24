@@ -59,6 +59,7 @@
 }
 .show_proyects{
 	background-color: #F4F5FA;
+	min-height: 600px;
 }
 .proyect{
 	font-size:4em;

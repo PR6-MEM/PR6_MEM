@@ -57,7 +57,8 @@
 							//Si es de tipo 2, es profesor normal
 							else if($fila['id_tipo_usuario']==2)
 							{
-								header("location:profesor.php");
+								$_SESSION['tipo']=$fila['id_tipo_usuario'];
+								header("location:ver_proyectos.php");
 							}
 						//header("location:ver_proyectos.php");
 					}
