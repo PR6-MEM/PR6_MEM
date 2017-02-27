@@ -57,12 +57,12 @@ for ($cont=0; $cont < count($notas) ; $cont++) {
 			$sql = "INSERT INTO `tbl_notas_tribunal` (`id_pregunta_tribunal`, `id_tribunal`, `valor_nota`, `id_integrante`) VALUES ( ".$idpreguntas[$cont].", ".$id_tribunal.", ".$notas[$cont].", ".$fila['id_integrante'].")";
 			//echo $fila['id_integrante']."<br>";
 			
-			if ($fila['id_integrante'] == $alumnos[$cont-1]) {
+		//	if ($fila['id_integrante'] == $alumnos[$cont-1]) {
 				
-			}else{
+		//	}else{
 				
-				array_push($alumnos, $fila['id_integrante']);
-			}
+		//		array_push($alumnos, $fila['id_integrante']);
+		//	}
 			
 
 		} 
@@ -72,7 +72,7 @@ for ($cont=0; $cont < count($notas) ; $cont++) {
 			//echo $notas[$cont]." ".$idpreguntas[$cont]." ".$matriculas[$cont]."<br>";
 		 	echo $sql;	
 
-$resultado= mysqli_query($conexion, $sql) or die (mysqli_error());
+			$resultado= mysqli_query($conexion, $sql) or die (mysqli_error());
 
 }
 
@@ -106,6 +106,8 @@ for ($cont=0; $cont < count($notas_globales) ; $cont++) {
 
 mysqli_close($conexion);
 	//echo '</select>';
+//LO ÚNICO QUE FALTARÍA ES CERRAR EL PROYECTO.
 	
+	header('Location: ../valoracion_recibida.php');
 
 ?>

@@ -5,7 +5,7 @@
 
 // echo $consulta;
 //echo '<select name="alumno1" class="form-control">';
-include ("../php/conexion.proc.php");
+include ("conexion.proc.php");
 
 //$consulta= "SELECT matricula_alumno FROM  tbl_integrante_proyecto WHERE id_proyecto =". $id_proyecto; 
 
@@ -15,7 +15,7 @@ $resultado= mysqli_query($conexion, $consulta) or die (mysqli_error());
 
 while($fila = mysqli_fetch_array($resultado)){	
 		
-		echo"<h2>".$fila['titulo_proyecto']."</h2>";
+		echo"<br><h1 class='text-center'>".$fila['titulo_proyecto']."</h1><br>";
 			
 	}
 mysqli_close($conexion);

@@ -1,7 +1,7 @@
 <?php
  extract($_REQUEST);
  
-include ("../php/conexion.proc.php");
+include ("conexion.proc.php");
 //creamos una array en la cual almacenaremos los nombres de los integrantes
 $nombres = array();
 $matriculas = array();
@@ -38,12 +38,12 @@ $cont=0;
 				$preguntas_tribunal= mysqli_query($conexion, $sql) or die (mysqli_error());
 				
 				
-echo"<div class='col-lg-12' style='background-color:#B9B9B9, border-radius: 25px;'>";
+				echo"<div class='col-lg-12 text-center'><br>";
 				while($pregunta = mysqli_fetch_array($preguntas_tribunal)){	
 
 					
 					if($pregunta['id_pregunta_tribunal']  == 1 ){				
-					echo "<h3>Valoració de la presentació oral de ".$nom_alu." </h4>";
+					echo "<h3 class='text-center'>Valoració de la presentació oral de ".$nom_alu." </h4><br>";
 					echo"<input type='hidden' name='nombres_alu[]' value='".$nom_alu."' >";
 					}
 					//echo $nom_alu;
@@ -74,10 +74,12 @@ echo"<div class='col-lg-12' style='background-color:#B9B9B9, border-radius: 25px
 				$preguntas_tribunal= mysqli_query($conexion, $sql) or die (mysqli_error());
 
 
+				echo"<div class='col-lg-12 text-center'>";
+
 				while($pregunta = mysqli_fetch_array($preguntas_tribunal)){	
 
 					if($pregunta['id_pregunta_tribunal']  == 5){
-					echo "<h3>Valoració del contingut de la presentació (global) </h3>";
+					echo "<h3 class='text-center'>Valoració del contingut de la presentació (global) </h3><br>";
 		
 					}								
 					echo"<label>".$pregunta['pregunta_tribunal']."</label> 
@@ -87,7 +89,7 @@ echo"<div class='col-lg-12' style='background-color:#B9B9B9, border-radius: 25px
 					echo"<input type='hidden' value=".$pregunta['id_pregunta_tribunal']." name='id_pregunta_global[]' >";
 
 				}
-
+				echo"<br></div>";
 
 mysqli_close($conexion);
 //echo '</select>';
