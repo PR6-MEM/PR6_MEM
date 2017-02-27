@@ -68,7 +68,7 @@
 
 	 <!-- Navigation -->
         <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
-        	<img class="logoBase" sr../valoracion publico/img/base.jpg">
+        	<img class="logoBase" src="../../valoracion publico/img/base.jpg">
           <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
                 
