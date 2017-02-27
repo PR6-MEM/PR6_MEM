@@ -47,6 +47,13 @@
 			return confirm("¿Estas seguro que te quieres desconectar?");
 			
 		}
+		function show_prof_action(){
+			document.getElementById("prof_formulario").style.display="block";
+		}
+		function hidden_prof_action(){
+			document.getElementById("prof_formulario").style.display="none";
+		}
+
 
 	</script>
 
@@ -84,16 +91,7 @@
 				<!-- habrá que hacer una consulta para obtener el titulo del proyecto  -->
 					<?php 
 						$fecha_actual=date("Y-m-d");
-						//SELECT * FROM `tbl_tribunal` WHERE `id_profesor2` LIKE 'David.marin' OR `id_profesor1`  LIKE 'David.marin'  OR `id_profesor1`  LIKE 'David.marin'
-						/*
-							SELECT * 
-							FROM tbl_proyecto` 
-								INNER JOIN `tbl_tribunal` 
-									ON tbl_proyecto.id_tribunal = tbl_tribunal.id_tribunal
-    							INNER JOIN `tbl_profesor`
-    								ON tbl_tribunal.id_profesor1 = tbl_profesor.usuario_profesor
-    							WHERE `id_profesor2` LIKE 'David.marin' OR `id_profesor1`  LIKE 'David.marin'  OR `id_profesor1`  LIKE 'David.marin'
-						*/
+						
 						 $sql = "SELECT * FROM `tbl_proyecto` WHERE `fecha_proyecto` = '".$fecha_actual."'  ";
 
 						 $result	=	mysqli_query($conexion,$sql);
@@ -112,9 +110,14 @@
 							while ($fila = mysqli_fetch_array($result)) 
 							{
 								echo "<div class='proyect  col-lg-6'>";
-								echo $fila['titulo_proyecto'] . "<br/>";
-								echo "<a href='../../valoracion tribunal/indes.html?id_proyecto=".$fila['id_proyecto']."'> <button class='btn btn-info'>Puntuar proyecto</button> </a><br/>";
-								echo "<a href='../../valoracion tribunal/estadisticas?id_proyecto=".$fila['id_proyecto']."'> <button class='btn btn-info'>Ver estadisticas del proyecto</button> </a><br/>";
+								echo  $fila['titulo_proyecto'] . "<br/><button onclick='show_prof_action(); 'class='btn btn-info'><i class='fa fa-arrow-down' aria-hidden='true' ></i></button>";
+								echo "<div class='prof_formulario' id='prof_formulario'>";
+									echo "<table class='table'>";
+										echo "<tr><td><a href='../../valoracion tribunal/indes.html?id_proyecto=".$fila['id_proyecto']."'>Puntuar proyecto</a></td></tr>";
+										echo "<tr><td><a href='../../valoracion tribunal/estadisticas?id_proyecto=".$fila['id_proyecto']."'>Ver estadisticas del proyecto</td></tr>";
+										echo "<tr><td><button onclick='hidden_prof_action(); 'class='btn btn-info'><i class='fa fa-arrow-up' aria-hidden='true' ></i></button></td></tr>";
+									echo "</table>";
+								echo "</div>";
 
 								echo "</div>";
 							}

@@ -63,8 +63,8 @@
 }
 .proyect{
 	font-size:4em;
-	margin-top:0.5%;
-	margin-bottom:0.5%;
+	margin-top: 4.5%;
+	margin-bottom: -2.5%;
 	background-color: white;
 	color:blue;
 	text-align: center;
@@ -74,3 +74,9 @@
 .navbar-custom {
 			background-color: #005cb9 !important;
 		}
+/*ESTILOS DEL FORMULARIO*/
+	.prof_formulario{
+		font-color:gray;
+		font-size: 0.5em;
+		display:none;
+	}
