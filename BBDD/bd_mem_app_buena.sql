@@ -2,10 +2,10 @@
 -- version 4.5.1
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Feb 21, 2017 at 05:55 PM
--- Server version: 10.1.13-MariaDB
--- PHP Version: 7.0.6
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 27-02-2017 a las 20:35:55
+-- Versión del servidor: 10.1.16-MariaDB
+-- Versión de PHP: 5.6.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `bd_mem_app`
+-- Base de datos: `bd_mem_app`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_alumno`
+-- Estructura de tabla para la tabla `tbl_alumno`
 --
 
 CREATE TABLE `tbl_alumno` (
@@ -32,49 +32,48 @@ CREATE TABLE `tbl_alumno` (
   `apellido1_alumno` varchar(30) NOT NULL,
   `apellido2_alumno` varchar(30) NOT NULL,
   `curso_alumno` varchar(20) NOT NULL,
-  `id_tipo_usuario` int(11) NOT NULL
+  `id_tipo_usuario` int(11) NOT NULL,
+  `foto_alumno` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_alumno`
+-- Volcado de datos para la tabla `tbl_alumno`
 --
 
-INSERT INTO `tbl_alumno` (`matricula_alumno`, `nombre_alumno`, `apellido1_alumno`, `apellido2_alumno`, `curso_alumno`, `id_tipo_usuario`) VALUES
-(7138, 'Miguel', 'López ', 'Galán ', 'daw2', 1),
-(1001489, 'Marc', 'Petit', 'Fernandez', 'Daw2', 1),
-(1025478, 'Paco', 'Paquito', '', 'ASIX', 1),
-(10000585, 'Esther', 'Rovira', 'Sancho', 'Daw2', 1);
+INSERT INTO `tbl_alumno` (`matricula_alumno`, `nombre_alumno`, `apellido1_alumno`, `apellido2_alumno`, `curso_alumno`, `id_tipo_usuario`,  `foto_alumno` ) VALUES
+(7138, 'Miguel', 'López ', 'Galán ', 'daw2', 1, 'miguel.jpg'),
+(1001489, 'Marc', 'Petit', 'Fernandez', 'Daw2', 1, 'marc.jpg'),
+(1025478, 'Paco', 'Paquito', '', 'ASIX', 1, 'otro.jpg'),
+(10000585, 'Esther', 'Rovira', 'Sancho', 'Daw2', 1, 'esther.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_integrante_proyecto`
+-- Estructura de tabla para la tabla `tbl_integrante_proyecto`
 --
 
 CREATE TABLE `tbl_integrante_proyecto` (
   `id_integrante` int(11) NOT NULL,
   `matricula_alumno` int(11) NOT NULL,
-  `id_proyecto` int(11) NOT NULL,
-  `id_pregunta_publico` int(11) DEFAULT NULL,
-  `id_pregunta_tribunal` int(11) DEFAULT NULL
+  `id_proyecto` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_integrante_proyecto`
+-- Volcado de datos para la tabla `tbl_integrante_proyecto`
 --
 
-INSERT INTO `tbl_integrante_proyecto` (`id_integrante`, `matricula_alumno`, `id_proyecto`, `id_pregunta_publico`, `id_pregunta_tribunal`) VALUES
-(55, 7138, 1, NULL, NULL),
-(56, 1001489, 1, NULL, NULL),
-(57, 10000585, 1, NULL, NULL),
-(58, 10000585, 2, NULL, NULL),
-(59, 7138, 2, NULL, NULL),
-(60, 1001489, 2, NULL, NULL);
+INSERT INTO `tbl_integrante_proyecto` (`id_integrante`, `matricula_alumno`, `id_proyecto`) VALUES
+(55, 7138, 1),
+(56, 1001489, 1),
+(57, 10000585, 1),
+(58, 10000585, 2),
+(59, 7138, 2),
+(60, 1001489, 2);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_notas_publico`
+-- Estructura de tabla para la tabla `tbl_notas_publico`
 --
 
 CREATE TABLE `tbl_notas_publico` (
@@ -88,20 +87,21 @@ CREATE TABLE `tbl_notas_publico` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_notas_tribunal`
+-- Estructura de tabla para la tabla `tbl_notas_tribunal`
 --
 
 CREATE TABLE `tbl_notas_tribunal` (
   `id_notas_tribunal` int(11) NOT NULL,
   `id_pregunta_tribunal` int(11) NOT NULL,
   `id_tribunal` int(11) NOT NULL,
-  `valor_nota` int(2) NOT NULL
+  `valor_nota` int(2) NOT NULL,
+  `id_integrante` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_pregunta_publico`
+-- Estructura de tabla para la tabla `tbl_pregunta_publico`
 --
 
 CREATE TABLE `tbl_pregunta_publico` (
@@ -110,7 +110,7 @@ CREATE TABLE `tbl_pregunta_publico` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_pregunta_publico`
+-- Volcado de datos para la tabla `tbl_pregunta_publico`
 --
 
 INSERT INTO `tbl_pregunta_publico` (`id_pregunta_publico`, `pregunta_publico`) VALUES
@@ -124,7 +124,7 @@ INSERT INTO `tbl_pregunta_publico` (`id_pregunta_publico`, `pregunta_publico`) V
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_pregunta_tribunal`
+-- Estructura de tabla para la tabla `tbl_pregunta_tribunal`
 --
 
 CREATE TABLE `tbl_pregunta_tribunal` (
@@ -133,7 +133,7 @@ CREATE TABLE `tbl_pregunta_tribunal` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_pregunta_tribunal`
+-- Volcado de datos para la tabla `tbl_pregunta_tribunal`
 --
 
 INSERT INTO `tbl_pregunta_tribunal` (`id_pregunta_tribunal`, `pregunta_tribunal`) VALUES
@@ -150,7 +150,7 @@ INSERT INTO `tbl_pregunta_tribunal` (`id_pregunta_tribunal`, `pregunta_tribunal`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_profesor`
+-- Estructura de tabla para la tabla `tbl_profesor`
 --
 
 CREATE TABLE `tbl_profesor` (
@@ -163,7 +163,7 @@ CREATE TABLE `tbl_profesor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_profesor`
+-- Volcado de datos para la tabla `tbl_profesor`
 --
 
 INSERT INTO `tbl_profesor` (`usuario_profesor`, `nombre_profesor`, `apellido1_profesor`, `apellido2_profesor`, `id_tipo_usuario`, `password`) VALUES
@@ -176,7 +176,7 @@ INSERT INTO `tbl_profesor` (`usuario_profesor`, `nombre_profesor`, `apellido1_pr
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_proyecto`
+-- Estructura de tabla para la tabla `tbl_proyecto`
 --
 
 CREATE TABLE `tbl_proyecto` (
@@ -190,7 +190,7 @@ CREATE TABLE `tbl_proyecto` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_proyecto`
+-- Volcado de datos para la tabla `tbl_proyecto`
 --
 
 INSERT INTO `tbl_proyecto` (`id_proyecto`, `titulo_proyecto`, `id_tutor_profesor`, `fecha_proyecto`, `fecha_cierre`, `proyecto_finalizado`, `id_tribunal`) VALUES
@@ -200,7 +200,7 @@ INSERT INTO `tbl_proyecto` (`id_proyecto`, `titulo_proyecto`, `id_tutor_profesor
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_tipo_usuario`
+-- Estructura de tabla para la tabla `tbl_tipo_usuario`
 --
 
 CREATE TABLE `tbl_tipo_usuario` (
@@ -209,7 +209,7 @@ CREATE TABLE `tbl_tipo_usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_tipo_usuario`
+-- Volcado de datos para la tabla `tbl_tipo_usuario`
 --
 
 INSERT INTO `tbl_tipo_usuario` (`id_tipo_usuario`, `tipo_usuario`) VALUES
@@ -220,7 +220,7 @@ INSERT INTO `tbl_tipo_usuario` (`id_tipo_usuario`, `tipo_usuario`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_tribunal`
+-- Estructura de tabla para la tabla `tbl_tribunal`
 --
 
 CREATE TABLE `tbl_tribunal` (
@@ -231,7 +231,7 @@ CREATE TABLE `tbl_tribunal` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_tribunal`
+-- Volcado de datos para la tabla `tbl_tribunal`
 --
 
 INSERT INTO `tbl_tribunal` (`id_tribunal`, `id_profesor1`, `id_profesor2`, `id_profesor3`) VALUES
@@ -247,28 +247,27 @@ INSERT INTO `tbl_tribunal` (`id_tribunal`, `id_profesor1`, `id_profesor2`, `id_p
 (19, 'david.marin', 'sergio.jimenez', 'nuria.garres');
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `tbl_alumno`
+-- Indices de la tabla `tbl_alumno`
 --
 ALTER TABLE `tbl_alumno`
   ADD PRIMARY KEY (`matricula_alumno`),
   ADD KEY `FK_id_tipo_usuario` (`id_tipo_usuario`);
 
 --
--- Indexes for table `tbl_integrante_proyecto`
+-- Indices de la tabla `tbl_integrante_proyecto`
 --
 ALTER TABLE `tbl_integrante_proyecto`
   ADD PRIMARY KEY (`id_integrante`),
   ADD KEY `FK_matricula_alumno` (`matricula_alumno`),
-  ADD KEY `FK_id_proyecto` (`id_proyecto`),
-  ADD KEY `FK_pregunta_publico` (`id_pregunta_publico`),
-  ADD KEY `FK_pregunta_tribunal` (`id_pregunta_tribunal`);
+  ADD KEY `FK_id_proyecto` (`id_proyecto`);
+
 
 --
--- Indexes for table `tbl_notas_publico`
+-- Indices de la tabla `tbl_notas_publico`
 --
 ALTER TABLE `tbl_notas_publico`
   ADD PRIMARY KEY (`id_notas_publico`),
@@ -276,33 +275,35 @@ ALTER TABLE `tbl_notas_publico`
   ADD KEY `FK_id_pregunta_publico` (`id_pregunta_publico`);
 
 --
--- Indexes for table `tbl_notas_tribunal`
+-- Indices de la tabla `tbl_notas_tribunal`
 --
 ALTER TABLE `tbl_notas_tribunal`
+  ADD PRIMARY KEY (`id_notas_tribunal`),
   ADD KEY `FK_id_pregunta_tribunal` (`id_pregunta_tribunal`),
-  ADD KEY `FK_id_tribunal_notas` (`id_tribunal`);
+  ADD KEY `FK_id_tribunal_notas` (`id_tribunal`),
+  ADD KEY `FK_id_integrante_nota_trib` (`id_integrante`);
 
 --
--- Indexes for table `tbl_pregunta_publico`
+-- Indices de la tabla `tbl_pregunta_publico`
 --
 ALTER TABLE `tbl_pregunta_publico`
   ADD PRIMARY KEY (`id_pregunta_publico`);
 
 --
--- Indexes for table `tbl_pregunta_tribunal`
+-- Indices de la tabla `tbl_pregunta_tribunal`
 --
 ALTER TABLE `tbl_pregunta_tribunal`
   ADD PRIMARY KEY (`id_pregunta_tribunal`);
 
 --
--- Indexes for table `tbl_profesor`
+-- Indices de la tabla `tbl_profesor`
 --
 ALTER TABLE `tbl_profesor`
   ADD PRIMARY KEY (`usuario_profesor`),
   ADD KEY `FK_id_tipo_usuario_profesor` (`id_tipo_usuario`);
 
 --
--- Indexes for table `tbl_proyecto`
+-- Indices de la tabla `tbl_proyecto`
 --
 ALTER TABLE `tbl_proyecto`
   ADD PRIMARY KEY (`id_proyecto`),
@@ -310,105 +311,110 @@ ALTER TABLE `tbl_proyecto`
   ADD KEY `FK_id_tribunal` (`id_tribunal`);
 
 --
--- Indexes for table `tbl_tipo_usuario`
+-- Indices de la tabla `tbl_tipo_usuario`
 --
 ALTER TABLE `tbl_tipo_usuario`
   ADD PRIMARY KEY (`id_tipo_usuario`);
 
 --
--- Indexes for table `tbl_tribunal`
+-- Indices de la tabla `tbl_tribunal`
 --
 ALTER TABLE `tbl_tribunal`
   ADD PRIMARY KEY (`id_tribunal`),
   ADD KEY `FK_id_profe_tribunal` (`id_profesor1`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `tbl_integrante_proyecto`
+-- AUTO_INCREMENT de la tabla `tbl_integrante_proyecto`
 --
 ALTER TABLE `tbl_integrante_proyecto`
   MODIFY `id_integrante` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 --
--- AUTO_INCREMENT for table `tbl_notas_publico`
+-- AUTO_INCREMENT de la tabla `tbl_notas_publico`
 --
 ALTER TABLE `tbl_notas_publico`
   MODIFY `id_notas_publico` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `tbl_pregunta_publico`
+-- AUTO_INCREMENT de la tabla `tbl_notas_tribunal`
+--
+ALTER TABLE `tbl_notas_tribunal`
+  MODIFY `id_notas_tribunal` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `tbl_pregunta_publico`
 --
 ALTER TABLE `tbl_pregunta_publico`
   MODIFY `id_pregunta_publico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
--- AUTO_INCREMENT for table `tbl_pregunta_tribunal`
+-- AUTO_INCREMENT de la tabla `tbl_pregunta_tribunal`
 --
 ALTER TABLE `tbl_pregunta_tribunal`
   MODIFY `id_pregunta_tribunal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
--- AUTO_INCREMENT for table `tbl_proyecto`
+-- AUTO_INCREMENT de la tabla `tbl_proyecto`
 --
 ALTER TABLE `tbl_proyecto`
   MODIFY `id_proyecto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `tbl_tipo_usuario`
+-- AUTO_INCREMENT de la tabla `tbl_tipo_usuario`
 --
 ALTER TABLE `tbl_tipo_usuario`
   MODIFY `id_tipo_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT for table `tbl_tribunal`
+-- AUTO_INCREMENT de la tabla `tbl_tribunal`
 --
 ALTER TABLE `tbl_tribunal`
   MODIFY `id_tribunal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
--- Constraints for dumped tables
+-- Restricciones para tablas volcadas
 --
 
 --
--- Constraints for table `tbl_alumno`
+-- Filtros para la tabla `tbl_alumno`
 --
 ALTER TABLE `tbl_alumno`
   ADD CONSTRAINT `FK_id_tipo_usuario` FOREIGN KEY (`id_tipo_usuario`) REFERENCES `tbl_tipo_usuario` (`id_tipo_usuario`);
 
 --
--- Constraints for table `tbl_integrante_proyecto`
+-- Filtros para la tabla `tbl_integrante_proyecto`
 --
 ALTER TABLE `tbl_integrante_proyecto`
   ADD CONSTRAINT `FK_id_proyecto` FOREIGN KEY (`id_proyecto`) REFERENCES `tbl_proyecto` (`id_proyecto`),
-  ADD CONSTRAINT `FK_matricula_alumno` FOREIGN KEY (`matricula_alumno`) REFERENCES `tbl_alumno` (`matricula_alumno`),
-  ADD CONSTRAINT `FK_pregunta_publico` FOREIGN KEY (`id_pregunta_publico`) REFERENCES `tbl_pregunta_publico` (`id_pregunta_publico`),
-  ADD CONSTRAINT `FK_pregunta_tribunal` FOREIGN KEY (`id_pregunta_tribunal`) REFERENCES `tbl_pregunta_tribunal` (`id_pregunta_tribunal`);
+  ADD CONSTRAINT `FK_matricula_alumno` FOREIGN KEY (`matricula_alumno`) REFERENCES `tbl_alumno` (`matricula_alumno`);
+ 
 
 --
--- Constraints for table `tbl_notas_publico`
+-- Filtros para la tabla `tbl_notas_publico`
 --
 ALTER TABLE `tbl_notas_publico`
   ADD CONSTRAINT `FK_id_pregunta_publico` FOREIGN KEY (`id_pregunta_publico`) REFERENCES `tbl_pregunta_publico` (`id_pregunta_publico`),
   ADD CONSTRAINT `FK_matricula_alumno_publico` FOREIGN KEY (`matricula_alumno_publico`) REFERENCES `tbl_alumno` (`matricula_alumno`);
 
 --
--- Constraints for table `tbl_notas_tribunal`
+-- Filtros para la tabla `tbl_notas_tribunal`
 --
 ALTER TABLE `tbl_notas_tribunal`
+  ADD CONSTRAINT `FK_id_integrante_nota_trib` FOREIGN KEY (`id_integrante`) REFERENCES `tbl_integrante_proyecto` (`id_integrante`),
   ADD CONSTRAINT `FK_id_pregunta_tribunal` FOREIGN KEY (`id_pregunta_tribunal`) REFERENCES `tbl_pregunta_tribunal` (`id_pregunta_tribunal`),
   ADD CONSTRAINT `FK_id_tribunal_notas` FOREIGN KEY (`id_tribunal`) REFERENCES `tbl_tribunal` (`id_tribunal`);
 
 --
--- Constraints for table `tbl_profesor`
+-- Filtros para la tabla `tbl_profesor`
 --
 ALTER TABLE `tbl_profesor`
   ADD CONSTRAINT `FK_id_tipo_usuario_profesor` FOREIGN KEY (`id_tipo_usuario`) REFERENCES `tbl_tipo_usuario` (`id_tipo_usuario`);
 
 --
--- Constraints for table `tbl_proyecto`
+-- Filtros para la tabla `tbl_proyecto`
 --
 ALTER TABLE `tbl_proyecto`
   ADD CONSTRAINT `FK_id_tribunal` FOREIGN KEY (`id_tribunal`) REFERENCES `tbl_tribunal` (`id_tribunal`),
   ADD CONSTRAINT `FK_id_tutor_profesor` FOREIGN KEY (`id_tutor_profesor`) REFERENCES `tbl_profesor` (`usuario_profesor`);
 
 --
--- Constraints for table `tbl_tribunal`
+-- Filtros para la tabla `tbl_tribunal`
 --
 ALTER TABLE `tbl_tribunal`
   ADD CONSTRAINT `FK_id_profe_tribunal` FOREIGN KEY (`id_profesor1`) REFERENCES `tbl_profesor` (`usuario_profesor`);

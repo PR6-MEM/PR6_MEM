@@ -113,8 +113,8 @@
 								echo  $fila['titulo_proyecto'] . "<br/><button onclick='show_prof_action(); 'class='btn btn-info'><i class='fa fa-arrow-down' aria-hidden='true' ></i></button>";
 								echo "<div class='prof_formulario' id='prof_formulario'>";
 									echo "<table class='table'>";
-										echo "<tr><td><a href='../../valoracion tribunal/indes.html?id_proyecto=".$fila['id_proyecto']."'>Puntuar proyecto</a></td></tr>";
-										echo "<tr><td><a href='../../valoracion tribunal/estadisticas?id_proyecto=".$fila['id_proyecto']."'>Ver estadisticas del proyecto</td></tr>";
+										echo "<tr><td><a href='../../valoracion tribunal/valoracion_tribunal.php?id_proyecto=".$fila['id_proyecto']."'>Puntuar proyecto</a></td></tr>";
+										echo "<tr><td><a href='../../valoracion tribunal/estadisticas.php?id_proyecto=".$fila['id_proyecto']."'>Ver estadisticas del proyecto</td></tr>";
 										echo "<tr><td><button onclick='hidden_prof_action(); 'class='btn btn-info'><i class='fa fa-arrow-up' aria-hidden='true' ></i></button></td></tr>";
 									echo "</table>";
 								echo "</div>";

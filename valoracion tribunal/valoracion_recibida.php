@@ -88,28 +88,10 @@
 		<div class="container-fluid">
 			<div class="show_proyects col-lg-12">
 				<div class="col-md-12">
-				
-				  <?php
-                        //<h2> consulta para obtener el título del proyecto </h2>
-                     
-                      //echo"<input type='text'value=".$id_proyecto." style='display:none;'>";
-                       include("php/consulta_titulo.proc.php");
-                       ?>
-                        <form action="php/valorar_tribunal.proc.php" method="GET">
-                         <!-- hacer una consulta para obtener las preguntas, con su y id y su texto correspondiente  -->
-                         <div  class='col-lg-12 text-center' >
+				<br><br><br>
+				Valoración realizada con éxito.
 
-
-                        <?php
-
-                        echo"<input type='hidden' name='id_proyecto' value=".$id_proyecto." '>";                  
-                        include("php/consulta_preguntas_tribunal.php");
-
-                         //ya genera el contenido de las preguntas, luego habrá que cojer la puntuación de cada elemento
-                         ?>
-                        
-                        <input type="submit" value="Enviar valoración">
-                        </form> 
+				<a href="../creacion de proyecto/php/ver_proyectos.php"> volver atrás</a>
 				</div>
 			</div> <!-- END show_proyects-->
 		</div> <!-- Final div class container-fluid -->
