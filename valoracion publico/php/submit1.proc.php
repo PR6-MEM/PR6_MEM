@@ -1,6 +1,6 @@
 <?php
 
- extract($_REQUEST);
+extract($_REQUEST);
  
 include ("conexion.proc.php");
 
@@ -18,74 +18,45 @@ session_start();
 					$name = $fila['nombre_alumno']." ".$fila['apellido1_alumno'];
 				}
 
-// $p1_alum1 = array ();
-// $p2_alum2 = array ();
-// $p3_alum3 =	array ();
-echo $p1_alum1;
-echo $p1_alum2;
-echo $p1_alum3;
-echo $id_proyecto;
+//Creamos un array de alumnos para meter las notas que genera esta página.
+	$alumnos = array($p1_alum1, $p1_alum2, $p1_alum3);
 
-// $alumnos = array($p1_alum1, $p1_alum2, $p1_alum3);
-
-// echo $alumnos;
-
-
-$consulta = "SELECT * from `tbl_integrante_proyecto` WHERE `id_proyecto` = ".$id_proyecto."";
-
-$resultado = mysqli_query($conexion, $consulta) or die (mysqli_error());
-
-
-while ($fila =mysqli_fetch_array($resultado)){
-	echo $fila['id_integrante'];
-
-
-}
-
-// $sql= "INSERT INTO `tbl_notas_publico` ( `id_pregunta_publico`, `matricula_alumno_publico`, `valor_nota`, `id_integrante`) VALUES ('1', ".$_SESSION['user'].", ".$p1_alum1.", ".$fila['id_integrante'].")";
+ //echo $alumnos[0];
 
 
 
-//En este caso como no generamos dinámicamente las preguntas podemos ponerlo directamente. 
 
+	$consulta = "SELECT * from `tbl_integrante_proyecto` WHERE `id_proyecto` = ".$id_proyecto."";
 
+	$resultado = mysqli_query($conexion, $consulta) or die (mysqli_error());
 
-//header ("location:../valoracion_publico2.php?id_proyecto=$id_proyecto");
+	$i=0;
 
-//
+	for ($i=0; $i<3; $i++){
 
-// //modifico los nombres de las variables para unificarlos con los creados por Marc
+		$alumno=$alumnos[$i];
 
-// $consulta= "SELECT matricula_alumno FROM  tbl_integrante_proyecto WHERE id_proyecto =". $id_proyecto; 
-
-
-// $resultado= mysqli_query($conexion, $consulta) or die (mysqli_error());
-
-// //Como necesito saber el nombre creamos consulta -- a través del número de matrícula obtenemos el nombre.
-
-// 	while($fila = mysqli_fetch_array($resultado)){	
+		$fila =mysqli_fetch_array($resultado);
 		
-// 		$consulta = "SELECT nombre_alumno, apellido1_alumno, apellido2_alumno, foto_alumno FROM tbl_alumno WHERE matricula_alumno=".$fila['matricula_alumno']; 
+//Compruebamos con los echo que nos da los datos que necesitamos para el insert
+		// echo "1";
+		// echo "<br>";
+		// echo $_SESSION['user'];
+		// echo "<br>";
+		// echo $alumno;
+		// echo "<br>";
+		// echo $fila['id_integrante'];
+		// echo "<br>";
+		// echo "fin";
+		// echo "<br>";
 
-// 		$nombres_alumnos= mysqli_query($conexion, $consulta) or die (mysqli_error());
+		$sql_insert = "INSERT INTO `tbl_notas_publico` ( `id_pregunta_publico`, `matricula_alumno_publico`, `valor_nota`, `id_integrante`) VALUES ('1', ".$_SESSION['user'].", ".$alumno.", ".$fila['id_integrante'].")";
 
+		$resultado_insert = mysqli_query($conexion, $sql_insert) or die (mysqli_error());
 
+	}
 
-// 		while($nombre_alumno = mysqli_fetch_array($nombres_alumnos)){
-
-// 			// echo $nombre_alumno['nombre_alumno']." ".$nombre_alumno ['apellido1_alumno']." ".$nombre_alumno ['apellido2_alumno'];
-// 			//Copio parte de arrays ya que no sabía como solucionarlo
-// 			//y ahora meteremos cada nombre en la array creada antes
-// 			 array_push($nombres, $nombre_alumno['nombre_alumno']." ".$nombre_alumno ['apellido1_alumno']." ".$nombre_alumno ['apellido2_alumno']);
-// 			 array_push ($fotos, $nombre_alumno['foto_alumno']);
-// 			 // array_push($nombres[1], $nombre_alumno['apellido1_alumno'])  
-// 			 array_push($matriculas, $fila['matricula_alumno']); 
-// 		}
-
-// 	}
-
-// 	echo "<img class='img-circle' src='img/".$fotos[2]."'> </a>" . $nombres[2];
-// // ahora tengo un array de alumnos que quiero 
+	header ("location:../valoracion_publico2.php?id_proyecto=$id_proyecto");
 
 
-// ?>
+?>
