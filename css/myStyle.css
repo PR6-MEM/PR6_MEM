@@ -69,6 +69,7 @@
 	color:blue;
 	text-align: center;
 	margin-left: 25%;
+	word-wrap: break-word;
 	margin-right:25%;
 }
 .navbar-custom {
