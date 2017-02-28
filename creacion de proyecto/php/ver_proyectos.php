@@ -109,6 +109,7 @@
 						 	 $result	=	mysqli_query($conexion,$sql);
 							while ($fila = mysqli_fetch_array($result)) 
 							{
+
 								echo "<div class='proyect  col-lg-6'>";
 								echo  $fila['titulo_proyecto'] . "<br/><button onclick='show_prof_action(); 'class='btn btn-info'><i class='fa fa-arrow-down' aria-hidden='true' ></i></button>";
 								echo "<div class='prof_formulario' id='prof_formulario'>";
@@ -122,14 +123,34 @@
 								echo "</div>";
 							}
 						}
-
 			 else
 		 	{
+		 		/*$check_answer="SELECT * FROM `tbl_notas_publico` INNER JOIN `tbl_integrante_proyecto` ON tbl_notas_publico.id_integrante = tbl_integrante_proyecto.id_integrante INNER JOIN `tbl_proyecto` ON tbl_integrante_proyecto.id_proyecto = tbl_proyecto.id_proyecto WHERE `matricula_alumno_publico` = ".$_SESSION['user']." AND `tbl_proyecto`.`id_proyecto`=".$fila['titulo_proyecto']."";*/
+		 		/*
+					SELECT * 
+ 					FROM `tbl_notas_publico` 
+						INNER JOIN `tbl_integrante_proyecto` 
+							ON tbl_notas_publico.id_integrante = tbl_integrante_proyecto.id_integrante
+   						INNER JOIN `tbl_proyecto`
+    						ON tbl_integrante_proyecto.id_proyecto = tbl_proyecto.id_proyecto
+    										
+		 		*/
 				while ($fila = mysqli_fetch_array($result)) 
 					{
+						$check_answer="SELECT * FROM `tbl_notas_publico` INNER JOIN `tbl_integrante_proyecto` ON tbl_notas_publico.id_integrante = tbl_integrante_proyecto.id_integrante INNER JOIN `tbl_proyecto` ON tbl_integrante_proyecto.id_proyecto = tbl_proyecto.id_proyecto WHERE `matricula_alumno_publico` = ".$_SESSION['user']." AND `tbl_proyecto`.`id_proyecto`=".$fila['id_proyecto']."";
+						$answer_result	=	mysqli_query($conexion,$check_answer);
+						$check_project  = mysqli_num_rows($answer_result); 
+
 						echo "<div class='proyect  col-lg-6'>";
+							if($check_project>=1){
+								echo "<h1>".$fila['titulo_proyecto'] . "</h1>";
+								echo "<br/>Ya has votado este proyecto";
+							}
+							else{
 							echo "<a href='../../valoracion publico/valoracion_publico1.php?id_proyecto=".$fila['id_proyecto']."'>".$fila['titulo_proyecto'] . "</a><br/>";
+						}
 						echo "</div>";
+						
 					}
 			}
 				 //echo $sql;die;
