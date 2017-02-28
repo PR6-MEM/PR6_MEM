@@ -32,18 +32,19 @@ CREATE TABLE `tbl_alumno` (
   `apellido1_alumno` varchar(30) NOT NULL,
   `apellido2_alumno` varchar(30) NOT NULL,
   `curso_alumno` varchar(20) NOT NULL,
-  `id_tipo_usuario` int(11) NOT NULL
+  `id_tipo_usuario` int(11) NOT NULL,
+  `foto_alumno` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tbl_alumno`
 --
 
-INSERT INTO `tbl_alumno` (`matricula_alumno`, `nombre_alumno`, `apellido1_alumno`, `apellido2_alumno`, `curso_alumno`, `id_tipo_usuario`) VALUES
-(7138, 'Miguel', 'López ', 'Galán ', 'daw2', 1),
-(1001489, 'Marc', 'Petit', 'Fernandez', 'Daw2', 1),
-(1025478, 'Paco', 'Paquito', '', 'ASIX', 1),
-(10000585, 'Esther', 'Rovira', 'Sancho', 'Daw2', 1);
+INSERT INTO `tbl_alumno` (`matricula_alumno`, `nombre_alumno`, `apellido1_alumno`, `apellido2_alumno`, `curso_alumno`, `id_tipo_usuario`,  `foto_alumno` ) VALUES
+(7138, 'Miguel', 'López ', 'Galán ', 'daw2', 1, 'miguel.jpg'),
+(1001489, 'Marc', 'Petit', 'Fernandez', 'Daw2', 1, 'marc.jpg'),
+(1025478, 'Paco', 'Paquito', '', 'ASIX', 1, 'otro.jpg'),
+(10000585, 'Esther', 'Rovira', 'Sancho', 'Daw2', 1, 'esther.jpg');
 
 -- --------------------------------------------------------
 
